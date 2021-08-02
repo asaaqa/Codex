@@ -30,7 +30,7 @@ from .logger import logging
 LOGS = logging.getLogger(__name__)
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
-CODLOGO = "https://telegra.ph/file/c6f5ed625c0fb1c2480f7.jpg"
+CODLOGO = "resources/photos/CODEX-2021.jpg"
 tr = Config.COMMAND_HAND_LER
 
 
