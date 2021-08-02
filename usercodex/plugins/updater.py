@@ -184,7 +184,7 @@ async def push(event, repo, ups_rem, ac_br, txt):
 
 
 @codex.cod_cmd(
-    pattern="update(| -pull)?$",
+    pattern="update( -pull| -push)$",
     command=("update", plugin_category),
     info={
         "header": "To update CodexUserbot.",
@@ -255,6 +255,10 @@ async def upstream(event):
     ups_rem.fetch(ac_br)
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     # Special case for deploy
+    if conf == "-push":
+        await event.edit("`Deploying Codex, please wait...`")
+        await push(event, repo, ups_rem, ac_br, txt)
+        return
     if changelog == "" and not force_update:
         await event.edit(
             "\n`Codex is`  **up-to-date**  `with`  " f"**{UPSTREAM_REPO_BRANCH}**\n"
@@ -273,41 +277,6 @@ async def upstream(event):
         await event.edit("`Updating codex, please wait...`")
         await pull(event, repo, ups_rem, ac_br)
     return
-
-
-@codex.cod_cmd(
-    pattern="update -push$",
-)
-async def upstream(event):
-    event = await edit_or_reply(event, "`Pulling the codexpack wait a sec...`")
-    off_repo = UPSTREAM_REPO_BRANCH
-    os.chdir("/app")
-    try:
-        txt = "`Oops.. Updater cannot continue due to "
-        txt += "some problems occured`\n\n**LOGTRACE:**\n"
-        repo = Repo()
-    except NoSuchPathError as error:
-        await event.edit(f"{txt}\n`directory {error} is not found`")
-        return repo.__del__()
-    except GitCommandError as error:
-        await event.edit(f"{txt}\n`Early failure! {error}`")
-        return repo.__del__()
-    except InvalidGitRepositoryError:
-        repo = Repo.init()
-        origin = repo.create_remote("upstream", off_repo)
-        origin.fetch()
-        repo.create_head("master", origin.refs.master)
-        repo.heads.master.set_tracking_branch(origin.refs.master)
-        repo.heads.master.checkout(True)
-    try:
-        repo.create_remote("upstream", off_repo)
-    except BaseException:
-        pass
-    ac_br = repo.active_branch.name
-    ups_rem = repo.remote("upstream")
-    ups_rem.fetch(ac_br)
-    await event.edit("`Deploying codex, please wait...`")
-    await push(event, repo, ups_rem, ac_br, txt)
 
 
 @codex.cod_cmd(
