@@ -13,7 +13,7 @@ _get_ziplink () {
         echo "aHR0cHM6Ly9naXRodWIuY29tL0NvZGV4NTEvQ29kZXgvYXJjaGl2ZS9tYXN0ZXIuemlw" | base64 -d
     elif [[ $UPSTREAM_REPO == "Codex" ]]
     then
-        echo "aHR0cHM6Ly9naXRodWIuY29tL0NvZGV4NTEvQ29kZXgvYXJjaGl2ZS9tYXN0ZXIuemlw" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL0NvZGV4NTEvQ29kZXguemlw" | base64 -d
     elif [[ $UPSTREAM_REPO =~ $regex ]]
     then
         if [[ $UPSTREAM_REPO_BRANCH ]]
