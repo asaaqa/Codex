@@ -107,15 +107,72 @@
        <p> First of all, please go to 👉🏼 https://my.telegram.org Then enter your Telegram account mobile number. If so, please enter the code that has been sent via telegram. Then click API development tools, and fill in. Done </p>
     </p>
    </details><br>
+</details>
 
-  <details><summary><b> Deployment </b></summary> <br />
+# <h3 align="left"> How to Deployment ? </h3>
+
+<details>
+  <br>
+  <p> Don't forget to take a look at the enforcement variables, in Codex Stuffs or in the example config file.</p>
+  <br>
+  <details><summary><b> Deploy using Heroku </b></summary> <br>
     <p> Deploy using heroku, and don't forget to register first. </p>
     <p>👇🏻 Click </p>
     <p align="left">
        <a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FCodex51%2FCodex"><img src="https://img.shields.io/badge/deploy_to_heroku-white?style=for-the-badge&logo=heroku.cd" alt="go_heroku" /></a>
     </p>
+    <br>
   </details><br>
-
+  <details><br><summary><b> Self Host </b></summary><br>
+  <p><b>1. First of all, update and upgrade apt :</b></p>
+  <p><code> sudo apt update && sudo apt upgrade -y </code></p><br>
+  <p><b>2. And then install the required apt packages:</b</p>
+  <p><code> sudo apt install --no-install-recommends -y curl git libffi-dev libjpeg-dev libwebp-dev python3-lxml python3-psycopg2 libpq-dev libcurl4-openssl-dev libxml2-dev libxslt1-dev python3-pip python3-sqlalchemy openssl wget python3 python3-dev libreadline-dev libyaml-dev gcc zlib1g ffmpeg libssl-dev libgconf-2-4 libxi6 unzip libopus0 libopus-dev python3-venv libmagickwand-dev pv tree mediainfo </code></p><br>
+  <p><i>If you wanna use local database then follow this steps else skip to step 8</i></p>
+  <p>Install requirements for this by</p>
+  <p><code> sudo apt install postgresql postgresql-contrib </code></p><br>
+  <p><b>3. Change the user to postgres to change the default ident password:</b></p>
+  <p><code> sudo su - postgres </code></p><br>
+  <p><b>4. And then open the PostgreSQL shell:</b></p>
+  <p><code> psql </code></p><br>
+  <p><b>5. Set any password you prefer, by running the below SQL:</b></p>
+  <p><code> ALTER USER postgres WITH PASSWORD 'yourpasswordhere'; </code></p><br>
+  <p><b>6. Get out of the PostgreSQL shell:</b></p>
+  <p><code> \q </code></p><br>
+  <p><b>7. And go back to your user: </b></p>
+  <p><code> exit </code></p><br>
+  <p><i>Now, the DB_URI will be:</i></p>
+  <p><code> postgresql://postgres:yourpasswordhere@localhost:5432/Codex </code></p>
+  <p><i> or use <a href="https://www.elephantsql.com/">elephantsql</a> if you wanna use that</i></p><br>
+  <p><b>8. Clone the repository:</b></p>
+  <p><code> git clone https://github.com./Codex51/Codex </code></p><br>
+  <p><b>9. Change dir to the cloned folder:</b></p>
+  <p><code>cd codexuser </code></p><br>
+  <p><b>10. Create your config.py.</b></p>
+  <p><i>by renaming the exampleconfig.py</i></p>
+  <p><code> mv exampleconfig.py config.py </code></p>
+  <a> you can get string session by running python3 stringsetup.py
+      before running that install telethon by pip3 install telethon
+  </a><br>
+  <p><b>11. Create a new screen:</b></p>
+  <p>Either tmux or screenfor screen</p>
+  <p><code> sudo apt install screen </code></p>
+  <p><code> screen -S usercodex </code><a> for tmux </a></p>
+  <p><code> sudo apt install tmux </code></p>
+  <p><code> tmux </code></p><br>
+  <p><b>12. And a virtual environment:</b></p>
+  <p><code> virtualenv venv </code></p><br>
+  <p><b>13. Activate the virtual environment you've just created:</b></p>
+  <p><code> source venv/bin/activate </code></p><br>
+  <p><b>14. And install the Python requirements:</b></p>
+  <p><code> pip3 install -r requirements.txt </code></p><br>
+  <p><b>15. Finally, run the usercodex:</b></p>
+  <p><code> python3 -m usercodex </code></p>
+  <p><b>16. And get out of your screen</b></p>
+  <i>by pressing CTRL+A and after that CTRL+D. (if you used screen)</i>
+  <i>or</i>
+  <i>CTRL+B and then D (if you use tmux)</i>
+  </details>
 </details>
 <br />
 
