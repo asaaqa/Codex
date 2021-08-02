@@ -15,6 +15,12 @@ from . import BOTLOG, BOTLOG_CHATID, codex, edit_or_reply, logging, spamwatch
 
 LOGS = logging.getLogger(__name__)
 plugin_category = "admin"
+
+
+def mentionuser(name, userid):
+    return f"[{name}](tg://user?id={userid})"
+
+
 if Config.ANTISPAMBOT_BAN:
 
     @codex.on(ChatAction())
@@ -45,11 +51,11 @@ if Config.ANTISPAMBOT_BAN:
             codgban = get_gbanuser(user.id)
             if codgban.reason:
                 hmm = await event.reply(
-                    f"User: [{get_display_name(user)}](tg://user?id={user.id})\nID: `{user.id}`\nWas GBanned by you for the reason: `{codgban.reason}`"
+                    f"User: [CLICK HERE](tg://user?id={user.id})\nID: `{user.id}`\nWas GBanned by you for the reason: `{codgban.reason}`"
                 )
             else:
                 hmm = await event.reply(
-                    f"User: [{get_display_name(user)}](tg://user?id={user.id})\nID: `{user.id}`\nWas GBanned by you."
+                    f"User: [CLICK HERE](tg://user?id={user.id})\nID: `{user.id}`\nWas GBanned by you."
                 )
             try:
                 await event.client.edit_permissions(
@@ -62,7 +68,7 @@ if Config.ANTISPAMBOT_BAN:
             ban = spamwatch.get_ban(user.id)
             if ban:
                 hmm = await event.reply(
-                    f"User: [{get_display_name(user)}](tg://user?id={user.id})\nID: `{user.id}`\nWas Banned by Spamwatch for the reason: `{ban.reason}`"
+                    f"User: [CLICK HERE](tg://user?id={user.id})\nID: `{user.id}`\nWas Banned by Spamwatch for the reason: `{ban.reason}`"
                 )
                 try:
                     await event.client.edit_permissions(
@@ -83,7 +89,7 @@ if Config.ANTISPAMBOT_BAN:
                     f"[Banned by Combot Anti Spam](https://cas.chat/query?u={user.id})"
                 )
                 hmm = await event.reply(
-                    f"User: [{get_display_name(user)}](tg://user?id={user.id})\nID: `{user.id}`\nWas Banned by Combot Anti-Spam Service(CAS) for the reason check: {reason}"
+                    f"User: [CLICK HERE](tg://user?id={user.id})\nID: `{user.id}`\nWas Banned by Combot Anti-Spam Service(CAS) for the reason check: {reason}"
                 )
                 try:
                     await event.client.edit_permissions(
@@ -96,7 +102,7 @@ if Config.ANTISPAMBOT_BAN:
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "#ANTISPAMBOT\n"
-                f"**User :** [{get_display_name(user)}](tg://user?id={user.id})\n"
+                f"**User :** [CLICK HERE](tg://user?id={user.id})\n"
                 f"**Chat :** {event.chat.title} (`{event.chat_id}`)\n"
                 f"**Reason :** {hmm.text}",
             )
@@ -131,7 +137,7 @@ async def caschecker(event):
             if banchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"[{get_display_name(info)}](tg://user?id={info.id}) - `{user.id}`\n"
+                    banned_users += f"👤 [CLICK HERE](tg://user?id={user.id}) - `{user.id}`\n"
                 else:
                     banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
@@ -180,7 +186,7 @@ async def caschecker(event):
             if spamchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"[{get_display_name(info)}](tg://user?id={info.id}) - `{user.id}`\n"
+                    banned_users += f"👤 [CLICK HERE](tg://user?id={user.id}) - `{user.id}`\n"
                 else:
                     banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
