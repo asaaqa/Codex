@@ -6,7 +6,6 @@ from requests import get
 from telethon.errors import ChatAdminRequiredError
 from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins
-from telethon.utils import get_display_name
 
 from ..Config import Config
 from ..sql_helper.gban_sql_helper import get_gbanuser, is_gbanned
@@ -137,7 +136,9 @@ async def caschecker(event):
             if banchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"👤 [CLICK HERE](tg://user?id={user.id}) - `{user.id}`\n"
+                    banned_users += (
+                        f"👤 [CLICK HERE](tg://user?id={user.id}) - `{user.id}`\n"
+                    )
                 else:
                     banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
@@ -186,7 +187,9 @@ async def caschecker(event):
             if spamchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"👤 [CLICK HERE](tg://user?id={user.id}) - `{user.id}`\n"
+                    banned_users += (
+                        f"👤 [CLICK HERE](tg://user?id={user.id}) - `{user.id}`\n"
+                    )
                 else:
                     banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
