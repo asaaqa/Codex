@@ -184,7 +184,7 @@ async def push(event, repo, ups_rem, ac_br, txt):
 
 
 @codex.cod_cmd(
-    pattern="update( -pull| -push)$",
+    pattern="update( -pull| -push|$)",
     command=("update", plugin_category),
     info={
         "header": "To update CodexUserbot.",
