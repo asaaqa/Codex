@@ -11,10 +11,9 @@ from telethon.tl.functions.phone import GetGroupCallRequest as getvcalls
 from telethon.tl.functions.phone import InviteToGroupCallRequest as invitetovc
 from telethon.tl.types import ChatAdminRights
 
-from ..core.managers import edit_delete, edit_or_reply
-
 from usercodex import codex
 
+from ..core.managers import edit_delete, edit_or_reply
 
 plugin_category = "tools"
 
@@ -27,7 +26,7 @@ async def get_call(event):
 
 def user_list(y, g):
     for a in range(0, len(y), g):
-        yield y[a: a + g]
+        yield y[a : a + g]
 
 
 @codex.cod_cmd(
@@ -88,10 +87,7 @@ async def turnoffvcalls(event):
     groups_only=True,
 )
 async def invitevcalls(event):
-    xedoc = await edit_or_reply(
-     event,
-     "`Inviting members to voice call...`"
-    )
+    xedoc = await edit_or_reply(event, "`Inviting members to voice call...`")
     users = []
     xed = 0
     async for m in event.client.iter_participants(event.chat_id):
