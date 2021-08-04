@@ -374,7 +374,8 @@ async def inline_handler(event):  # sourcery no-metrics
                 json.dump(newsecret, open(secret, "w"))
         elif string == "help":
             _result = main_menu()
-            result = builder.article(
+            result = builder.photo(
+                I_IMG.
                 title="© Codex Help",
                 description="Help menu for Codex",
                 text=_result[0],
