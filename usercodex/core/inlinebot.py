@@ -621,7 +621,10 @@ async def on_plug_in_callback_query_handler(event):
         COD = [x for x in HELP_PIC.split()]
         PIC = list(COD)
         HP_IMG = random.choice(PIC)
-    await event.edit(file=HP_IMG, _result[0], buttons=_result[1])
+    else:
+        HP_IMG = "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
+
+    await event.edit(_result[0], buttons=_result[1], file=HP_IMG)
 
 
 @codex.tgbot.on(
