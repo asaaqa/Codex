@@ -1,7 +1,8 @@
 from telethon import events
 
-from usercodex import Config, codex
+from usercodex import codex
 
+from ..Config import Config
 from ..core.session import group_call_factory
 
 group_call = group_call_factory.start(xedoc)
