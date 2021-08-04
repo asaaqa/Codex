@@ -30,7 +30,7 @@ from .logger import logging
 LOGS = logging.getLogger(__name__)
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
-CODLOGO = "resources/photos/CODEX-2021.jpg"
+CODLOGO = "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
 tr = Config.COMMAND_HAND_LER
 
 
@@ -374,15 +374,44 @@ async def inline_handler(event):  # sourcery no-metrics
                 json.dump(newsecret, open(secret, "w"))
         elif string == "help":
             _result = main_menu()
-            result = builder.photo(
-                I_IMG,
-                type="photo",
-                title="© Codex Help",
-                description="Help menu for Codex",
-                text=_result[0],
-                buttons=_result[1],
-                link_preview=False,
-            )
+            buttons = [
+                (
+                    Button.url("Source Code", "https://github.com/Codex51/Codex"),
+                    Button.url(
+                        "Deploy",
+                        "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FCodex51%2FCodex&template=https%3A%2F%2Fgithub.com%2FCodex51%2FCodex",
+                    ),
+                )
+            ]
+            HP_PIC = gvarstatus("HP_PIC")
+            if HP_PIC:
+                COD = [x for x in HP_PIC.split()]
+                PIC = list(COD)
+                COD_IMG = random.choice(PIC)
+            else:
+                COD_IMG = None
+            query = "© Codex, 2021"
+            if COD_IMG and CD_IMG.endswith((".jpg", ".jpeg", ".png")):
+                result = builder.photo(
+                    COD_IMG,
+                    title="© Codex Help",
+                    text=_result[0],
+                    buttons=_result[1],
+                    link_preview=False,
+                )
+            elif COD_IMG:
+                result = builder.document(
+                    COD_IMG,
+                    title="© Codex Helper",
+                    text=query,
+                    buttons=buttons,
+                )
+            else:
+                result = builder.article(
+                    title="© Codex Helper",
+                    text=query,
+                    buttons=buttons,
+                )
             await event.answer([result] if result else None)
         elif str_y[0].lower() == "ytdl" and len(str_y) == 2:
             link = get_yt_video_id(str_y[1].strip())
