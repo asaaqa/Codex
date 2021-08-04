@@ -375,7 +375,8 @@ async def inline_handler(event):  # sourcery no-metrics
         elif string == "help":
             _result = main_menu()
             result = builder.photo(
-                I_IMG.
+                I_IMG,
+                type ="photo",
                 title="© Codex Help",
                 description="Help menu for Codex",
                 text=_result[0],
