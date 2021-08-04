@@ -373,16 +373,6 @@ async def inline_handler(event):  # sourcery no-metrics
             else:
                 json.dump(newsecret, open(secret, "w"))
         elif string == "help":
-            _result = main_menu()
-            buttons = [
-                (
-                    Button.url("Source Code", "https://github.com/Codex51/Codex"),
-                    Button.url(
-                        "Deploy",
-                        "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FCodex51%2FCodex&template=https%3A%2F%2Fgithub.com%2FCodex51%2FCodex",
-                    ),
-                )
-            ]
             HP_PIC = gvarstatus("HP_PIC")
             if HP_PIC:
                 COD = [x for x in HP_PIC.split()]
@@ -390,7 +380,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 COD_IMG = random.choice(PIC)
             else:
                 COD_IMG = None
-            query = "© Codex, 2021"
+            _result = main_menu()
             if COD_IMG and CD_IMG.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
                     COD_IMG,
@@ -403,13 +393,13 @@ async def inline_handler(event):  # sourcery no-metrics
                 result = builder.document(
                     COD_IMG,
                     title="© Codex Helper",
-                    text=query,
+                    text=_result[0],
                     buttons=buttons,
                 )
             else:
                 result = builder.article(
                     title="© Codex Helper",
-                    text=query,
+                    text=_result[0],
                     buttons=buttons,
                 )
             await event.answer([result] if result else None)
