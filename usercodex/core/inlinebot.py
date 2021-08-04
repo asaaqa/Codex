@@ -377,13 +377,13 @@ async def inline_handler(event):  # sourcery no-metrics
             if HELP_PIC:
                 COD = [x for x in HELP_PIC.split()]
                 PIC = list(COD)
-                COD_IMG = random.choice(PIC)
+                HP_IMG = random.choice(PIC)
             else:
-                COD_IMG = None
+                HP_IMG = "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
             _result = main_menu()
-            if COD_IMG and CD_IMG.endswith((".jpg", ".jpeg", ".png")):
+            if HP_IMG and HP_IMG.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
-                    file=COD_IMG,
+                    file=HP_IMG,
                     # title="© Codex Helper",
                     # description="Help menu for Codex",
                     text=_result[0],
@@ -617,7 +617,11 @@ async def on_plug_in_callback_query_handler(event):
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     _result = main_menu()
-    await event.edit(file=COD_IMG, _result[0], buttons=_result[1])
+    if HELP_PIC:
+        COD = [x for x in HELP_PIC.split()]
+        PIC = list(COD)
+        HP_IMG = random.choice(PIC)
+    await event.edit(file=HP_IMG, _result[0], buttons=_result[1])
 
 
 @codex.tgbot.on(
