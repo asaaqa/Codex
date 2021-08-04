@@ -373,9 +373,9 @@ async def inline_handler(event):  # sourcery no-metrics
             else:
                 json.dump(newsecret, open(secret, "w"))
         elif string == "help":
-            HP_PIC = gvarstatus("HP_PIC")
-            if HP_PIC:
-                COD = [x for x in HP_PIC.split()]
+            HELP_PIC = gvarstatus("HELP_PIC")
+            if HELP_PIC:
+                COD = [x for x in HELP_PIC.split()]
                 PIC = list(COD)
                 COD_IMG = random.choice(PIC)
             else:
@@ -383,26 +383,14 @@ async def inline_handler(event):  # sourcery no-metrics
             _result = main_menu()
             if COD_IMG and CD_IMG.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
-                    COD_IMG,
-                    title="© Codex Help",
+                    file=COD_IMG,
+                    title="© Codex Helper",
+                    description="Help menu for Codex",
                     text=_result[0],
                     buttons=_result[1],
                     link_preview=False,
                 )
-            elif COD_IMG:
-                result = builder.document(
-                    COD_IMG,
-                    title="© Codex Helper",
-                    text=_result[0],
-                    buttons=buttons,
-                )
-            else:
-                result = builder.article(
-                    title="© Codex Helper",
-                    text=_result[0],
-                    buttons=buttons,
-                )
-            await event.answer([result] if result else None)
+            await event.answer([result] if result else None, gallery=True)
         elif str_y[0].lower() == "ytdl" and len(str_y) == 2:
             link = get_yt_video_id(str_y[1].strip())
             found_ = True
