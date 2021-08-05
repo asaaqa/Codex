@@ -163,7 +163,6 @@ async def codgban(event):
     for i in range(xedoc):
         try:
             await event.client(EditBannedRequest(cod[i], user.id, UNBAN_RIGHTS))
-            return await event.client(functions.contacts.UnblockRequest(user.id))
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
