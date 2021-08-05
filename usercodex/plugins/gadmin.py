@@ -6,6 +6,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChatBannedRights
 from telethon.utils import get_display_name
+from telethon import functions
 
 from usercodex import codex
 
@@ -57,23 +58,32 @@ async def codgban(event):  # sourcery no-metrics
     user, reason = await get_user_from_event(event, code)
     if not user:
         return
+
     if user.id == codex.uid:
         return await edit_delete(code, "`why would I ban myself`")
+
+    if user:
+        return await event.client(functions.contacts.BlockReques(user.id)
+
     if gban_sql.is_gbanned(user.id):
         await code.edit(
             f"`The `[user](tg://user?id={user.id})` is already in gbanned list any way checking again.`"
         )
+
     else:
         gban_sql.codgban(user.id, reason)
+
     cod = await admin_groups(event.client)
     count = 0
     xedoc = len(cod)
+
     if xedoc == 0:
         return await edit_delete(code, "`you are not admin of atleast one group` ")
     await code.edit(
         f"`initiating gban of the `[user](tg://user?id={user.id}) `in {len(cod)} groups.`"
     )
     for i in range(xedoc):
+
         try:
             await event.client(EditBannedRequest(cod[i], user.id, BANNED_RIGHTS))
             await asyncio.sleep(0.5)
@@ -86,16 +96,20 @@ async def codgban(event):  # sourcery no-metrics
             )
     end = datetime.now()
     codtaken = (end - start).seconds
+
     if reason:
         await code.edit(
             f"**User:** [{get_display_name(user)}](tg://user?id={user.id})\n**ID:** `{user.id}`\nWas GBanned in **{count}** groups, in `{codtaken}sec.`\n**Reason :** `{reason}`"
         )
+
     else:
         await code.edit(
-            f"**User:** [{get_display_name(user)}](tg://user?id={user.id})**\n**ID:** `{user.id}`\nWas GBanned in **{count}** groups, in `{codtaken}sec.`!!"
+            f"**User:** [{get_display_name(user)}](tg://user?id={user.id})\n**ID:** `{user.id}`\nWas GBanned in **{count}** groups, in `{codtaken}sec.`"
         )
+
     if BOTLOG and count != 0:
         reply = await event.get_reply_message()
+
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -107,6 +121,7 @@ async def codgban(event):  # sourcery no-metrics
                 \n**Banned in** `{count}` **groups.**\
                 \n**Time taken :** `{codtaken}sec.`",
             )
+
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -117,6 +132,7 @@ async def codgban(event):  # sourcery no-metrics
                 \n**Banned in** `{count}` **group.**\
                 \n**Time taken :** `{codtaken}sec.`",
             )
+
         try:
             if reply:
                 await reply.forward_to(BOTLOG_CHATID)
@@ -139,10 +155,16 @@ async def codgban(event):
     code = await edit_or_reply(event, "`Ungbanning...`")
     start = datetime.now()
     user, reason = await get_user_from_event(event, code)
+
     if not user:
         return
+
+    if user:
+        return await event.client(functions.contacts.UnblockRequest(user.id))
+
     if gban_sql.is_gbanned(user.id):
         gban_sql.codungban(user.id)
+
     else:
         return await edit_delete(
             code, f"The [user](tg://user?id={user.id}) `is not in your gbanned list.`"
@@ -150,14 +172,17 @@ async def codgban(event):
     cod = await admin_groups(event.client)
     count = 0
     xedoc = len(cod)
+
     if xedoc == 0:
         return await edit_delete(code, "`you are not even admin of atleast one group `")
     await code.edit(
         f"initiating ungban of the [user](tg://user?id={user.id}) in `{len(cod)}` groups."
     )
     for i in range(xedoc):
+
         try:
             await event.client(EditBannedRequest(cod[i], user.id, UNBAN_RIGHTS))
+            return await event.client(functions.contacts.UnblockRequest(user.id))
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
@@ -168,16 +193,19 @@ async def codgban(event):
             )
     end = datetime.now()
     codtaken = (end - start).seconds
+
     if reason:
         await code.edit(
-            f"**User:** [{get_display_name(achat)}](tg://user?id={achat.id}`)\n**ID:** `{user.id}`\nWas Ungbanned in **{count}** groups, in `{codtaken}sec.`\n**Reason:** `{reason}`"
+            f"**User:** [{get_display_name(achat)}](tg://user?id={achat.id}`)\n**ID:** `{user.id}`\nWas UnGBanned in **{count}** groups, in `{codtaken}sec.`\n**Reason:** `{reason}`"
         )
+
     else:
         await code.edit(
-            f"**User:** [{get_display_name(user)}](tg://user?id={user.id})\n**ID:** `{user.id}`\nWas ungbanned in **{count}** groups, in `{codtaken}sec.`"
+            f"**User:** [{get_display_name(user)}](tg://user?id={user.id})\n**ID:** `{user.id}`\nWas UnGBanned in **{count}** groups, in `{codtaken}sec.`"
         )
 
     if BOTLOG and count != 0:
+
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -189,6 +217,7 @@ async def codgban(event):
                 \n**Unbanned in** `{count}` **groups**\
                 \n**Time taken :** `{codtaken}sec.`",
             )
+
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -213,12 +242,16 @@ async def gablist(event):
     "Shows you the list of all gbanned users by you."
     gbanned_users = gban_sql.get_all_gbanned()
     GBANNED_LIST = "📖 Current Gbanned Users:\n"
+
     if len(gbanned_users) > 0:
         for a_user in gbanned_users:
+
             if a_user.reason:
                 GBANNED_LIST += f"|👤 **User:** [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n**Reason:** {a_user.reason}\n"
+
             else:
                 GBANNED_LIST += f"|👤 **User:** [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n**Reason:** `None`\n"
+
     else:
         GBANNED_LIST = "no Gbanned Users (yet)"
     await edit_or_reply(event, GBANNED_LIST)
@@ -235,44 +268,55 @@ async def gablist(event):
 )
 async def startgmute(event):
     "To mute a person in all groups where you are admin."
+
     if event.is_private:
         await event.edit("`Unexpected issues or ugly errors may occur!`")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
+
     else:
         user, reason = await get_user_from_event(event)
+
         if not user:
             return
+
         if user.id == codex.uid:
             return await edit_or_reply(event, "`Sorry, I can't gmute myself`")
         userid = user.id
+
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
         return await edit_or_reply(event, "`Sorry. I am unable to fetch the user`")
+
     if is_muted(userid, "gmute"):
         return await edit_or_reply(
             event,
             f"{_format.mentionuser(user.first_name ,user.id)} ` is already gmuted`",
         )
+
     try:
         mute(userid, "gmute")
     except Exception as e:
         await edit_or_reply(event, f"**Error**\n`{str(e)}`")
+
     else:
         if reason:
             await edit_or_reply(
                 event,
                 f"{_format.mentionuser(user.first_name ,user.id)} `is Successfully gmuted`\n**Reason :** `{reason}`",
             )
+
         else:
             await edit_or_reply(
                 event,
                 f"{_format.mentionuser(user.first_name ,user.id)} `is Successfully gmuted`",
             )
+
     if BOTLOG:
         reply = await event.get_reply_message()
+
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -280,12 +324,14 @@ async def startgmute(event):
                 f"**User :** {_format.mentionuser(user.first_name ,user.id)} \n"
                 f"**Reason :** `{reason}`",
             )
+
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "#GMUTE\n"
                 f"**User :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
+
         if reply:
             await reply.forward_to(BOTLOG_CHATID)
 
@@ -301,41 +347,51 @@ async def startgmute(event):
 )
 async def endgmute(event):
     "To remove gmute on that person."
+
     if event.is_private:
         await event.edit("`Unexpected issues or ugly errors may occur!`")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
+
     else:
         user, reason = await get_user_from_event(event)
+
         if not user:
             return
+
         if user.id == codex.uid:
             return await edit_or_reply(event, "`Sorry, I can't gmute myself`")
         userid = user.id
+
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
         return await edit_or_reply(event, "`Sorry. I am unable to fetch the user`")
+
     if not is_muted(userid, "gmute"):
         return await edit_or_reply(
             event, f"{_format.mentionuser(user.first_name ,user.id)} `is not gmuted`"
         )
+
     try:
         unmute(userid, "gmute")
     except Exception as e:
         await edit_or_reply(event, f"**Error**\n`{str(e)}`")
+
     else:
         if reason:
             await edit_or_reply(
                 event,
                 f"{_format.mentionuser(user.first_name ,user.id)} `is Successfully ungmuted`\n**Reason :** `{reason}`",
             )
+
         else:
             await edit_or_reply(
                 event,
                 f"{_format.mentionuser(user.first_name ,user.id)} `is Successfully ungmuted`",
             )
+
     if BOTLOG:
         if reason:
             await event.client.send_message(
@@ -344,6 +400,7 @@ async def endgmute(event):
                 f"**User :** {_format.mentionuser(user.first_name ,user.id)} \n"
                 f"**Reason :** `{reason}`",
             )
+
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -371,13 +428,16 @@ async def codgkick(event):  # sourcery no-metrics
     code = await edit_or_reply(event, "`gkicking.......`")
     start = datetime.now()
     user, reason = await get_user_from_event(event, code)
+
     if not user:
         return
+
     if user.id == codex.uid:
         return await edit_delete(code, "`why would I kick myself`")
     cod = await admin_groups(event.client)
     count = 0
     xedoc = len(cod)
+
     if xedoc == 0:
         return await edit_delete(code, "`you are not admin of atleast one group` ")
     await code.edit(
@@ -396,10 +456,12 @@ async def codgkick(event):  # sourcery no-metrics
             )
     end = datetime.now()
     codtaken = (end - start).seconds
+
     if reason:
         await code.edit(
             f"[{user.first_name}](tg://user?id={user.id}) `was gkicked in {count} groups in {codtaken} seconds`!!\n**Reason :** `{reason}`"
         )
+
     else:
         await code.edit(
             f"[{user.first_name}](tg://user?id={user.id}) `was gkicked in {count} groups in {codtaken} seconds`!!"
@@ -418,6 +480,7 @@ async def codgkick(event):  # sourcery no-metrics
                 \n__Kicked in {count} groups__\
                 \n**Time taken : **`{codtaken} seconds`",
             )
+
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -428,5 +491,6 @@ async def codgkick(event):  # sourcery no-metrics
                 \n__Kicked in {count} groups__\
                 \n**Time taken : **`{codtaken} seconds`",
             )
+
         if reply:
             await reply.forward_to(BOTLOG_CHATID)
