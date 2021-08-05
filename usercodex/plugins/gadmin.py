@@ -83,9 +83,7 @@ async def codgban(event):  # sourcery no-metrics
     )
     for i in range(xedoc):
         try:
-            await event.client(
-                EditBannedRequest(cod[i], user.id, BANNED_RIGHTS)
-            )
+            await event.client(EditBannedRequest(cod[i], user.id, BANNED_RIGHTS))
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
@@ -167,9 +165,7 @@ async def codgban(event):
     )
     for i in range(xedoc):
         try:
-            await event.client(
-                EditBannedRequest(cod[i], user.id, UNBAN_RIGHTS)
-            )
+            await event.client(EditBannedRequest(cod[i], user.id, UNBAN_RIGHTS))
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
