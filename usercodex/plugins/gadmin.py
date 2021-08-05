@@ -64,8 +64,6 @@ async def codgban(event):  # sourcery no-metrics
         await code.edit(
             f"`The `[user](tg://user?id={user.id})` is already in gbanned list any way checking again.`"
         )
-    if user == user.id:
-        return await event.client(functions.contacts.BlockReques(user.id)
     else:
         gban_sql.codgban(user.id, reason)
     cod = await admin_groups(event.client)
@@ -78,7 +76,7 @@ async def codgban(event):  # sourcery no-metrics
     )
     for i in range(xedoc):
         try:
-            await event.client(EditBannedRequest(cod[i], user.id, BANNED_RIGHTS))
+            await event.client(EditBannedRequest, BlockReques(cod[i], user.id, BANNED_RIGHTS))
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
@@ -146,8 +144,6 @@ async def codgban(event):
         return
     if gban_sql.is_gbanned(user.id):
         gban_sql.codungban(user.id)
-    if user == user.id:
-        return await event.client(functions.contacts.UnblockRequest(user.id))
     else:
         return await edit_delete(
             code, f"The [user](tg://user?id={user.id}) `is not in your gbanned list.`"
@@ -162,7 +158,7 @@ async def codgban(event):
     )
     for i in range(xedoc):
         try:
-            await event.client(EditBannedRequest(cod[i], user.id, UNBAN_RIGHTS))
+            await event.client(EditBannedRequest, UnblockRequest(cod[i], user.id, UNBAN_RIGHTS))
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
