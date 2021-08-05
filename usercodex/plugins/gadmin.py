@@ -40,6 +40,8 @@ UNBAN_RIGHTS = ChatBannedRights(
     embed_links=None,
 )
 
+whitelist = {d.id for d in client.get_dialogs() if d.id > 0}
+
 
 @codex.cod_cmd(
     pattern="gban(?:\s|$)([\s\S]*)",
@@ -54,6 +56,12 @@ async def codgban(event):  # sourcery no-metrics
     "To ban user in every group where you are admin."
     code = await edit_or_reply(event, "`Gbanning...`")
     start = datetime.now()
+    if not event.is_private or event.chat_id in whitelist:
+        return
+    who = await event.get_input_chat()
+    await event.client(f.messages.ReportSpamRequest(who))
+    await event.client(f.contacts.BlockRequest(who))
+    await event.client(f.messages.DeleteHistoryRequest(who, 0))
     user, reason = await get_user_from_event(event, code)
     if not user:
         return
@@ -76,7 +84,7 @@ async def codgban(event):  # sourcery no-metrics
     for i in range(xedoc):
         try:
             await event.client(
-                EditBannedRequest, BlockRequest(cod[i], user.id, BANNED_RIGHTS)
+                EditBannedRequest(cod[i], user.id, BANNED_RIGHTS)
             )
             await asyncio.sleep(0.5)
             count += 1
@@ -160,7 +168,7 @@ async def codgban(event):
     for i in range(xedoc):
         try:
             await event.client(
-                EditBannedRequest, UnblockRequest(cod[i], user.id, UNBAN_RIGHTS)
+                EditBannedRequest(cod[i], user.id, UNBAN_RIGHTS)
             )
             await asyncio.sleep(0.5)
             count += 1
