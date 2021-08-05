@@ -56,8 +56,6 @@ async def codgban(event):  # sourcery no-metrics
     code = await edit_or_reply(event, "`Gbanning...`")
     start = datetime.now()
     user, reason = await get_user_from_event(event, code)
-    if user:
-        return await event.client(functions.contacts.BlockReques(user.id)
     if not user:
         return
     if user.id == codex.uid:
@@ -66,6 +64,8 @@ async def codgban(event):  # sourcery no-metrics
         await code.edit(
             f"`The `[user](tg://user?id={user.id})` is already in gbanned list any way checking again.`"
         )
+    if user == user.id:
+        return await event.client(functions.contacts.BlockReques(user.id)
     else:
         gban_sql.codgban(user.id, reason)
     cod = await admin_groups(event.client)
@@ -142,12 +142,12 @@ async def codgban(event):
     code = await edit_or_reply(event, "`Ungbanning...`")
     start = datetime.now()
     user, reason = await get_user_from_event(event, code)
-    if user:
-        return await event.client(functions.contacts.UnblockRequest(user.id))
     if not user:
         return
     if gban_sql.is_gbanned(user.id):
         gban_sql.codungban(user.id)
+    if user == user.id:
+        return await event.client(functions.contacts.UnblockRequest(user.id))
     else:
         return await edit_delete(
             code, f"The [user](tg://user?id={user.id}) `is not in your gbanned list.`"
