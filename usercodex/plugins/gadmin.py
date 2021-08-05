@@ -76,7 +76,7 @@ async def codgban(event):  # sourcery no-metrics
     for i in range(xedoc):
         try:
             await event.client(
-                EditBannedRequest, BlockReques(cod[i], user.id, BANNED_RIGHTS)
+                EditBannedRequest, BlockRequest(cod[i], user.id, BANNED_RIGHTS)
             )
             await asyncio.sleep(0.5)
             count += 1
