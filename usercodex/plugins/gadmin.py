@@ -55,14 +55,14 @@ whitelist = {d.id for d in client.get_dialogs() if d.id > 0}
 )
 async def codgban(event):  # sourcery no-metrics
     "To ban user in every group where you are admin."
-    code = await edit_or_reply(event, "`Gbanning...`")
-    start = datetime.now()
     if not event.is_private or event.chat_id in whitelist:
         return
     who = await event.get_input_chat()
     await event.client(functions.messages.ReportSpamRequest(who))
     await event.client(functions.contacts.BlockRequest(who))
     await event.client(functions.messages.DeleteHistoryRequest(who, 0))
+    code = await edit_or_reply(event, "`Gbanning...`")
+    start = datetime.now()
     user, reason = await get_user_from_event(event, code)
     if not user:
         return
