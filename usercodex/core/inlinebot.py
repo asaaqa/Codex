@@ -631,7 +631,11 @@ async def on_plug_in_callback_query_handler(event):
     else:
         CS_IMG = None or "https://telegra.ph/file/f9004ed387e1e33aaae86.jpg"
 
-    await event.edit("Copyright (C) 2021, Codex\nLicense: The 3-Clause BSD", buttons=buttons, file=CS_IMG)
+    await event.edit(
+        "Copyright (C) 2021, Codex\nLicense: The 3-Clause BSD",
+        buttons=buttons,
+        file=CS_IMG,
+    )
 
 
 @codex.tgbot.on(CallbackQuery(data=re.compile(b"check")))
