@@ -6,7 +6,6 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChatBannedRights
 from telethon.utils import get_display_name
-from telethon import functions
 
 from usercodex import codex
 
@@ -76,7 +75,9 @@ async def codgban(event):  # sourcery no-metrics
     )
     for i in range(xedoc):
         try:
-            await event.client(EditBannedRequest, BlockReques(cod[i], user.id, BANNED_RIGHTS))
+            await event.client(
+                EditBannedRequest, BlockReques(cod[i], user.id, BANNED_RIGHTS)
+            )
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
@@ -158,7 +159,9 @@ async def codgban(event):
     )
     for i in range(xedoc):
         try:
-            await event.client(EditBannedRequest, UnblockRequest(cod[i], user.id, UNBAN_RIGHTS))
+            await event.client(
+                EditBannedRequest, UnblockRequest(cod[i], user.id, UNBAN_RIGHTS)
+            )
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
