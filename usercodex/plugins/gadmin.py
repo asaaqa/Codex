@@ -59,9 +59,9 @@ async def codgban(event):  # sourcery no-metrics
     if not event.is_private or event.chat_id in whitelist:
         return
     who = await event.get_input_chat()
-    await event.client(f.messages.ReportSpamRequest(who))
-    await event.client(f.contacts.BlockRequest(who))
-    await event.client(f.messages.DeleteHistoryRequest(who, 0))
+    await event.client(functions.messages.ReportSpamRequest(who))
+    await event.client(functions.contacts.BlockRequest(who))
+    await event.client(functions.messages.DeleteHistoryRequest(who, 0))
     user, reason = await get_user_from_event(event, code)
     if not user:
         return
