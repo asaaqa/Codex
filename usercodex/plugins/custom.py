@@ -45,7 +45,7 @@ oldvars = {
             "get": "To show the already existing var value.",
             "del": "To delete the existing value",
         },
-        "var name": "**[List of Database Vars]**(https://telegra.ph/Data-vars-Setup-07-27)",
+        "var name": "**[List of Database Vars Setup]**(https://telegra.ph/Data-vars-Setup-08-05)",
         "usage": [
             "{tr}setdv <var name> <var value>",
             "{tr}getdv <var name>",
