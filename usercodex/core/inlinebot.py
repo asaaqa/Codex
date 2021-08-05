@@ -617,6 +617,7 @@ async def on_plug_in_callback_query_handler(event):
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     _result = main_menu()
+    HELP_PIC = gvarstatus("HELP_PIC")
     if HELP_PIC:
         COD = [x for x in HELP_PIC.split()]
         PIC = list(COD)
