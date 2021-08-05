@@ -128,22 +128,31 @@ def paginate_help(
     category_plugins=None,
     category_pgno=0,
 ):  # sourcery no-metrics
+
     try:
         number_of_rows = int(gvarstatus("NO_OF_ROWS_IN_HELP") or 5)
+
     except ValueError:
         number_of_rows = 5
+
     except TypeError:
         number_of_rows = 5
+
     try:
         number_of_cols = int(gvarstatus("NO_OF_COLUMNS_IN_HELP") or 2)
+
     except ValueError:
         number_of_cols = 2
+
     except TypeError:
         number_of_cols = 2
+
     HELP_EMOJI = gvarstatus("HELP_EMOJI") or " "
     helpable_plugins = [p for p in loaded_plugins if not p.startswith("_")]
     helpable_plugins = sorted(helpable_plugins)
+
     if len(HELP_EMOJI) == 2:
+
         if plugins:
             modules = [
                 Button.inline(
@@ -152,6 +161,7 @@ def paginate_help(
                 )
                 for x in helpable_plugins
             ]
+
         else:
             modules = [
                 Button.inline(
@@ -160,6 +170,7 @@ def paginate_help(
                 )
                 for x in helpable_plugins
             ]
+
     elif plugins:
         modules = [
             Button.inline(
@@ -168,6 +179,7 @@ def paginate_help(
             )
             for x in helpable_plugins
         ]
+
     else:
         modules = [
             Button.inline(
@@ -176,10 +188,13 @@ def paginate_help(
             )
             for x in helpable_plugins
         ]
+
     if number_of_cols == 1:
         pairs = list(zip(modules[::number_of_cols]))
+
     elif number_of_cols == 2:
         pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols]))
+
     else:
         pairs = list(
             zip(
@@ -188,13 +203,17 @@ def paginate_help(
                 modules[2::number_of_cols],
             )
         )
+
     if len(modules) % number_of_cols == 1:
         pairs.append((modules[-1],))
+
     elif len(modules) % number_of_cols == 2:
         pairs.append((modules[-2], modules[-1]))
     max_num_pages = math.ceil(len(pairs) / number_of_rows)
     modulo_page = page_number % max_num_pages
+
     if plugins:
+
         if len(pairs) > number_of_rows:
             pairs = pairs[
                 modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
@@ -205,8 +224,10 @@ def paginate_help(
                     Button.inline("⌦", data=f"{prefix}_next({modulo_page})_plugin"),
                 )
             ]
+
         else:
             pairs = pairs + [(Button.inline("⚙️ Main Menu", data="mainmenu"),)]
+
     elif len(pairs) > number_of_rows:
         pairs = pairs[
             modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
@@ -226,6 +247,7 @@ def paginate_help(
                 ),
             )
         ]
+
     else:
         pairs = pairs + [
             (
@@ -248,9 +270,11 @@ async def inline_handler(event):  # sourcery no-metrics
     str_y = query.split(" ", 1)
     string.split()
     query_user_id = event.query.user_id
+
     if query_user_id == Config.OWNER_ID or query_user_id in Config.SUDO_USERS:
         hmm = re.compile("secret (.*) (.*)")
         match = re.findall(hmm, query)
+
         if query.startswith("**Codex"):
             buttons = [
                 (
@@ -260,22 +284,27 @@ async def inline_handler(event):  # sourcery no-metrics
             ]
             ALIVE_PIC = gvarstatus("ALIVE_PIC")
             IALIVE_PIC = gvarstatus("IALIVE_PIC")
+
             if IALIVE_PIC:
                 COD = [x for x in IALIVE_PIC.split()]
                 PIC = list(COD)
                 I_IMG = random.choice(PIC)
+
             if not IALIVE_PIC and ALIVE_PIC:
                 COD = [x for x in ALIVE_PIC.split()]
                 PIC = list(COD)
                 I_IMG = random.choice(PIC)
+
             elif not IALIVE_PIC and not ALIVE_PIC:
-                I_IMG = None
-            if I_IMG and I_IMG.endswith((".jpg", ".png")):
+                I_IMG = None or "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
+
+            if I_IMG is not None and I_IMG.endswith((".jpg", ".png")):
                 result = builder.photo(
                     I_IMG,
                     text=query,
                     buttons=buttons,
                 )
+
             elif I_IMG:
                 result = builder.document(
                     I_IMG,
@@ -283,6 +312,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     text=query,
                     buttons=buttons,
                 )
+
             else:
                 result = builder.article(
                     title="Alive Codex",
@@ -290,6 +320,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     buttons=buttons,
                 )
             await event.answer([result] if result else None)
+
         elif query.startswith("Inline buttons"):
             markdown_note = query[14:]
             prev = 0
@@ -301,17 +332,21 @@ async def inline_handler(event):  # sourcery no-metrics
                 while to_check > 0 and markdown_note[to_check] == "\\":
                     n_escapes += 1
                     to_check -= 1
+
                 if n_escapes % 2 == 0:
                     buttons.append(
                         (match.group(2), match.group(3), bool(match.group(4)))
                     )
                     note_data += markdown_note[prev : match.start(1)]
                     prev = match.end(1)
+
                 elif n_escapes % 2 == 1:
                     note_data += markdown_note[prev:to_check]
                     prev = match.start(1) - 1
+
                 else:
                     break
+
             else:
                 note_data += markdown_note[prev:]
             message_text = note_data.strip()
@@ -323,22 +358,28 @@ async def inline_handler(event):  # sourcery no-metrics
                 link_preview=False,
             )
             await event.answer([result] if result else None)
+
         elif match:
             query = query[7:]
             user, txct = query.split(" ", 1)
             builder = event.builder
             secret = os.path.join("./usercodex", "secrets.txt")
+
             try:
                 jsondata = json.load(open(secret))
             except Exception:
                 jsondata = False
+
             try:
                 # if u is user id
                 u = int(user)
+
                 try:
                     u = await event.client.get_entity(u)
+
                     if u.username:
                         xedoc = f"@{u.username}"
+
                     else:
                         xedoc = f"[{u.first_name}](tg://user?id={u.id})"
                 except ValueError:
@@ -350,8 +391,10 @@ async def inline_handler(event):  # sourcery no-metrics
                     u = await event.client.get_entity(user)
                 except ValueError:
                     return
+
                 if u.username:
                     xedoc = f"@{u.username}"
+
                 else:
                     xedoc = f"[{u.first_name}](tg://user?id={u.id})"
                 u = int(u.id)
@@ -367,21 +410,27 @@ async def inline_handler(event):  # sourcery no-metrics
                 buttons=buttons,
             )
             await event.answer([result] if result else None)
+
             if jsondata:
                 jsondata.update(newsecret)
                 json.dump(jsondata, open(secret, "w"))
+
             else:
                 json.dump(newsecret, open(secret, "w"))
+
         elif string == "help":
             HELP_PIC = gvarstatus("HELP_PIC")
+
             if HELP_PIC:
                 COD = [x for x in HELP_PIC.split()]
                 PIC = list(COD)
                 HP_IMG = random.choice(PIC)
+
             else:
-                HP_IMG = "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
+                HP_IMG = None or "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
             _result = main_menu()
-            if HP_IMG and HP_IMG.endswith((".jpg", ".jpeg", ".png")):
+
+            if HP_IMG is not None and HP_IMG.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
                     file=HP_IMG,
                     # title="© Codex Helper",
@@ -391,14 +440,18 @@ async def inline_handler(event):  # sourcery no-metrics
                     link_preview=False,
                 )
             await event.answer([result] if result else None)
+
         elif str_y[0].lower() == "ytdl" and len(str_y) == 2:
             link = get_yt_video_id(str_y[1].strip())
             found_ = True
+
             if link is None:
                 search = VideosSearch(str_y[1].strip(), limit=15)
                 resp = (search.result()).get("result")
+
                 if len(resp) == 0:
                     found_ = False
+
                 else:
                     outdata = await result_formatter(resp)
                     key_ = rand_key()
@@ -419,9 +472,11 @@ async def inline_handler(event):  # sourcery no-metrics
                     ]
                     caption = outdata[1]["message"]
                     photo = await get_ytthumb(outdata[1]["video_id"])
+
             else:
                 caption, buttons = await download_button(link, body=True)
                 photo = await get_ytthumb(link)
+
             if found_:
                 markup = event.client.build_reply_markup(buttons)
                 photo = types.InputWebDocument(
@@ -441,12 +496,14 @@ async def inline_handler(event):  # sourcery no-metrics
                         reply_markup=markup, message=text, entities=msg_entities
                     ),
                 )
+
             else:
                 result = builder.article(
                     title="Not Found",
                     text=f"No Results found for `{str_y[1]}`",
                     description="INVALID",
                 )
+
             try:
                 await event.answer([result] if result else None)
             except QueryIdInvalidError:
@@ -459,6 +516,7 @@ async def inline_handler(event):  # sourcery no-metrics
                         )
                     ]
                 )
+
         elif string == "age_verification_alert":
             buttons = [
                 Button.inline(text="Yes I'm 18+", data="age_verification_true"),
@@ -485,25 +543,30 @@ async def inline_handler(event):  # sourcery no-metrics
                 ),
             )
             await event.answer([result] if result else None)
+
         elif string == "pmpermit":
             buttons = [
                 Button.inline(text="Show Options.", data="show_pmpermit_options"),
             ]
             PM_PIC = gvarstatus("PM_PIC")
+
             if PM_PIC:
                 COD = [x for x in PM_PIC.split()]
                 PIC = list(COD)
                 COD_IMG = random.choice(PIC)
+
             else:
-                COD_IMG = None
+                COD_IMG = None or "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
             query = gvarstatus("pmpermit_text")
-            if COD_IMG and COD_IMG.endswith((".jpg", ".jpeg", ".png")):
+
+            if COD_IMG is not None and COD_IMG.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
                     COD_IMG,
                     # title="Alive Codex",
                     text=query,
                     buttons=buttons,
                 )
+
             elif COD_IMG:
                 result = builder.document(
                     COD_IMG,
@@ -511,6 +574,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     text=query,
                     buttons=buttons,
                 )
+
             else:
                 result = builder.article(
                     title="Alive Codex",
@@ -518,6 +582,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     buttons=buttons,
                 )
             await event.answer([result] if result else None)
+
     else:
         buttons = [
             (
@@ -556,7 +621,17 @@ async def on_plug_in_callback_query_handler(event):
     buttons = [
         (Button.inline("Open Menu", data="mainmenu"),),
     ]
-    await event.edit("Menu Closed", buttons=buttons)
+    CLOSE_PIC = gvarstatus("CLOSE_PIC")
+
+    if CLOSE_PIC:
+        COD = [x for x in CLOSE_PIC.split()]
+        PIC = list(COD)
+        CS_IMG = random.choice(PIC)
+
+    else:
+        CS_IMG = None or "https://telegra.ph/file/f9004ed387e1e33aaae86.jpg"
+
+    await event.edit("Copyright (C) 2021, Codex\nLicense: The 3-Clause BSD", buttons=buttons, file=CS_IMG)
 
 
 @codex.tgbot.on(CallbackQuery(data=re.compile(b"check")))
@@ -591,11 +666,13 @@ async def on_plug_in_callback_query_handler(event):
     mtype = str(event.pattern_match.group(1).decode("UTF-8"))
     category = str(event.pattern_match.group(2).decode("UTF-8"))
     pgno = int(event.pattern_match.group(3).decode("UTF-8"))
+
     if mtype == "plugin":
         buttons = paginate_help(pgno, GRP_INFO[category], category)
         text = f"**Category: **`{category}`\
             \n**Total plugins :** __{len(GRP_INFO[category])}__\
             \n**Total Commands:** __{command_in_category(category)}__"
+
     else:
         category_plugins = str(event.pattern_match.group(4).decode("UTF-8"))
         category_pgno = int(event.pattern_match.group(5).decode("UTF-8"))
@@ -618,12 +695,14 @@ async def on_plug_in_callback_query_handler(event):
 async def on_plug_in_callback_query_handler(event):
     _result = main_menu()
     HELP_PIC = gvarstatus("HELP_PIC")
+
     if HELP_PIC:
         COD = [x for x in HELP_PIC.split()]
         PIC = list(COD)
         HP_IMG = random.choice(PIC)
+
     else:
-        HP_IMG = "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
+        HP_IMG = None or "https://telegra.ph/file/6c72c3fd6acdf8d3a9042.jpg"
 
     await event.edit(_result[0], buttons=_result[1], file=HP_IMG)
 
@@ -638,6 +717,7 @@ async def on_plug_in_callback_query_handler(event):
     htype = str(event.pattern_match.group(3).decode("UTF-8"))
     if htype == "plugin":
         buttons = paginate_help(current_page_number - 1, GRP_INFO[category], category)
+
     else:
         category_plugins = str(event.pattern_match.group(4).decode("UTF-8"))
         category_pgno = int(event.pattern_match.group(5).decode("UTF-8"))
@@ -652,6 +732,7 @@ async def on_plug_in_callback_query_handler(event):
         text = f"**Plugin: **`{category}`\
                 \n**Category: **__{getkey(category)}__\
                 \n**Total Commands:** __{len(PLG_INFO[category])}__"
+
         try:
             return await event.edit(text, buttons=buttons)
         except Exception:
@@ -668,13 +749,17 @@ async def on_plug_in_callback_query_handler(event):
     current_page_number = int(event.data_match.group(2).decode("UTF-8"))
     htype = str(event.pattern_match.group(3).decode("UTF-8"))
     category_plugins = event.pattern_match.group(4)
+
     if category_plugins:
         category_plugins = str(category_plugins.decode("UTF-8"))
     category_pgno = event.pattern_match.group(5)
+
     if category_pgno:
         category_pgno = int(category_pgno.decode("UTF-8"))
+
     if htype == "plugin":
         buttons = paginate_help(current_page_number + 1, GRP_INFO[category], category)
+
     else:
         buttons = paginate_help(
             current_page_number + 1,
