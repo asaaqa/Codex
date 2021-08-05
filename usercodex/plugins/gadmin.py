@@ -41,8 +41,6 @@ UNBAN_RIGHTS = ChatBannedRights(
     embed_links=None,
 )
 
-whitelist = {d.id for d in client.get_dialogs() if d.id > 0}
-
 
 @codex.cod_cmd(
     pattern="gban(?:\s|$)([\s\S]*)",
