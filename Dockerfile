@@ -1,5 +1,5 @@
 # Using python slim-buster
-FROM codex51/codex:buster
+FROM asaaqa/codex:buster
 
 # Clone
 RUN git clone https://github.com/asaaqa/Codex.git /root/usercodex
