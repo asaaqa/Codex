@@ -53,22 +53,22 @@ def ibuild_keyboard(buttons):
 
 
 def main_menu():
-    text = f"Codex Helper\
-        \nProvided by {mention}"
+    text = f"قائمة أوامر الأمبـراطور\
+        \عزيزي {mention} اليك القائمه"
     buttons = [
         (
             Button.inline(
-                f"ℹ️ Info",
+                f"ℹ️ معلومات",
                 data="check",
             ),
         ),
         (
             Button.inline(
-                f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})",
+                f"📲 الحساب ({len(GRP_INFO['admin'])})",
                 data=f"admin_menu",
             ),
             Button.inline(
-                f"🤖 Bot ({len(GRP_INFO['bot'])})",
+                f"🤖 البــوت ({len(GRP_INFO['bot'])})",
                 data=f"bot_menu",
             ),
         ),
@@ -78,33 +78,33 @@ def main_menu():
                 data=f"fun_menu",
             ),
             Button.inline(
-                f"🧩 Misc ({len(GRP_INFO['misc'])})",
+                f"🔊 ميــوزك ({len(GRP_INFO['misc'])})",
                 data=f"misc_menu",
             ),
         ),
         (
             Button.inline(
-                f"🧰 Tools ({len(GRP_INFO['tools'])})",
+                f"🎛 الأدوات ({len(GRP_INFO['tools'])})",
                 data=f"tools_menu",
             ),
             Button.inline(
-                f"🗂 Utils ({len(GRP_INFO['utils'])})",
+                f"🗂 المرافق ({len(GRP_INFO['utils'])})",
                 data=f"utils_menu",
             ),
         ),
         (
             Button.inline(
-                f"➕ Extra ({len(GRP_INFO['extra'])})",
+                f"➕ الأضافي ({len(GRP_INFO['extra'])})",
                 data=f"extra_menu",
             ),
             Button.inline(
-                f"⚰️ Useless ({len(GRP_INFO['useless'])})",
+                f"⚰️ مييت ({len(GRP_INFO['useless'])})",
                 data=f"useless_menu",
             ),
         ),
         (
             Button.inline(
-                f"🔒 Close Menu",
+                f"🔒 إغــلاق",
                 data=f"close",
             ),
         ),
@@ -200,28 +200,28 @@ def paginate_help(
                 modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
             ] + [
                 (
-                    Button.inline("⌫", data=f"{prefix}_prev({modulo_page})_plugin"),
-                    Button.inline("⚙️ Main Menu", data="mainmenu"),
-                    Button.inline("⌦", data=f"{prefix}_next({modulo_page})_plugin"),
+                    Button.inline("التالي", data=f"{prefix}_prev({modulo_page})_plugin"),
+                    Button.inline("⚙️ الرئيــسية", data="mainmenu"),
+                    Button.inline("السابق", data=f"{prefix}_next({modulo_page})_plugin"),
                 )
             ]
         else:
-            pairs = pairs + [(Button.inline("⚙️ Main Menu", data="mainmenu"),)]
+            pairs = pairs + [(Button.inline("⚙️ الرئيــسية", data="mainmenu"),)]
     elif len(pairs) > number_of_rows:
         pairs = pairs[
             modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
         ] + [
             (
                 Button.inline(
-                    "⌫",
+                    "التالي",
                     data=f"{prefix}_prev({modulo_page})_command_{category_plugins}_{category_pgno}",
                 ),
                 Button.inline(
-                    "⬅️ Back ",
+                    "⬅️ رجوع ",
                     data=f"back_plugin_{category_plugins}_{category_pgno}",
                 ),
                 Button.inline(
-                    "⌦",
+                    "السابق",
                     data=f"{prefix}_next({modulo_page})_command_{category_plugins}_{category_pgno}",
                 ),
             )
@@ -230,7 +230,7 @@ def paginate_help(
         pairs = pairs + [
             (
                 Button.inline(
-                    "⬅️ Back ",
+                    "⬅️ رجوع ",
                     data=f"back_plugin_{category_plugins}_{category_pgno}",
                 ),
             )
@@ -254,8 +254,8 @@ async def inline_handler(event):  # sourcery no-metrics
         if query.startswith("**Codexuserbot"):
             buttons = [
                 (
-                    Button.inline("Stats", data="stats"),
-                    Button.url("Repo", "https://github.com/Codex51/Codex"),
+                    Button.inline("تنصيب", data="stats"),
+                    Button.url("Repo", "https://github.com//Codex"),
                 )
             ]
             ALIVE_PIC = gvarstatus("ALIVE_PIC")
