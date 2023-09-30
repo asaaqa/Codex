@@ -23,8 +23,8 @@ from requests import get
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 
-from Test import codex
-from Test.core.logger import logging
+from usercodex import codex
+from usercodex.core.logger import logging
 
 from ..Config import Config
 from ..core.managers import edit_or_reply, edit_delete
