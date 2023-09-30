@@ -2,7 +2,7 @@
 FROM codex51/codex:buster
 
 # Clone
-RUN git clone https://github.com/Codex51/Codex.git /root/usercodex
+RUN git clone https://github.com/asaaqa/Codex.git /root/usercodex
 #working directory 
 WORKDIR /root/usercodex
 
