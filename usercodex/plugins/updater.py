@@ -34,9 +34,9 @@ heroku_api = "https://api.heroku.com"
 UPSTREAM_REPO_BRANCH = Config.UPSTREAM_REPO_BRANCH
 
 REPO_REMOTE_NAME = "temponame"
-IFFUCI_ACTIVE_BRANCH_NAME = "master"
+IFFUCI_ACTIVE_BRANCH_NAME = "Zade"
 NO_HEROKU_APP_CFGD = "no heroku application found, but a key given? 😕 "
-HEROKU_GIT_REF_SPEC = "HEAD:refs/heads/Test"
+HEROKU_GIT_REF_SPEC = "HEAD:refs/heads/Zade"
 RESTARTING_APP = "re-starting heroku application"
 IS_SELECTED_DIFFERENT_BRANCH = (
     "looks like a custom branch {branch_name} "
@@ -159,7 +159,7 @@ async def push(event, repo, ups_rem, ac_br, txt):
     else:
         remote = repo.create_remote("heroku", heroku_git_url)
     try:
-        remote.push(refspec="HEAD:refs/heads/Test", force=True)
+        remote.push(refspec="HEAD:refs/heads/Zade", force=True)
     except Exception as error:
         await event.edit(f"{txt}\n**Error log:**\n`{error}`")
         return repo.__del__()
@@ -198,7 +198,7 @@ async def push(event, repo, ups_rem, ac_br, txt):
             "{tr}update",
             "{tr}update -pull",
             "{tr}update -push",
-            "{tr}update -codex -master",
+            "{tr}update -codex -Zade",
         ],
     },
 )
@@ -234,9 +234,9 @@ async def upstream(event):
         origin = repo.create_remote("upstream", off_repo)
         origin.fetch()
         force_update = True
-        repo.create_head("Test", origin.refs.master)
-        repo.heads.master.set_tracking_branch(origin.refs.master)
-        repo.heads.master.checkout(True)
+        repo.create_head("Zade", origin.refs.Zade)
+        repo.heads.Zade.set_tracking_branch(origin.refs.Zade)
+        repo.heads.Zade.checkout(True)
     ac_br = repo.active_branch.name
     if ac_br != UPSTREAM_REPO_BRANCH:
         await event.edit(
@@ -296,9 +296,9 @@ async def upstream(event):
         repo = Repo.init()
         origin = repo.create_remote("upstream", off_repo)
         origin.fetch()
-        repo.create_head("master", origin.refs.master)
-        repo.heads.master.set_tracking_branch(origin.refs.master)
-        repo.heads.master.checkout(True)
+        repo.create_head("Zade", origin.refs.Zade)
+        repo.heads.Zade.set_tracking_branch(origin.refs.Zade)
+        repo.heads.Zade.checkout(True)
     try:
         repo.create_remote("upstream", off_repo)
     except BaseException:
@@ -320,7 +320,7 @@ async def upstream(event):
             "codex -master": "to update to the original repository, if you fork.",
         },
         "usage": [
-            "{tr}codex -Test",
+            "{tr}codex -Zade",
         ],
     },
 )
