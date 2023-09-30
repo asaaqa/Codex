@@ -21,7 +21,7 @@ StartTime = time.time()
 codversion = "0.01"
 
 if Config.UPSTREAM_REPO == "Codex":
-    UPSTREAM_REPO_URL = "https://github.com/Codex51/Codex"
+    UPSTREAM_REPO_URL = "https://github.com/asaaqa/Codex"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
