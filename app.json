@@ -1,86 +1,164 @@
 {
-  "name": "CODEX",
-  "description": "A simple Telegram userbot based on Telethon.",
-  "logo": "https://telegra.ph/file/d7b3f78a0082e60bc3ae6.jpg",
+
+  "name": "سورس ســهـۍ -يوزر بوت",
+
+  "description": "اهلا وسهلا بكم في سورس سهــۍ",
+
+  "logo": "https://telegra.ph/file/56e7f4436f779aafd9ab9.jpg",
+
   "keywords": [
+
     "plugin",
+
     "modular",
+
     "productivity"
+
   ],
-  "repository": "https://github.com/Codex51/Codex/",
+
+  "repository": "https://github.com/asaaqa/Codex",
+
   "website": "#TODO",
+
   "success_url": "#TODO",
+
   "env": {
+
     "ALIVE_NAME": {
-      "description": "give your name",
+
+      "description": "اســم حســـابك التلـي",
+
       "value": ""
+
     },
+
     "APP_ID": {
-      "description": "Get this value from my.telegram.org! Please do not steal",
+
+      "description": "كـود ايبي ايـدي〔 App id 〕الصغيـر", 
+
       "value": ""
+
     },
+
     "API_HASH": {
-      "description": "Get this value from my.telegram.org! Please do not steal",
+
+      "description": "كـود ايبي هـاش〔 Api hash 〕..",
+
       "value": ""
+
     },
-    "STRING_SESSION": {
-      "description": "Get this value by running python3 in resources/stringsession/string_session.py locally or https://generatestringsession.KENZO404.repl.run",
-      "value": ""
-    },
-    "TG_BOT_TOKEN": {
-      "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the token of your bot.Worth it. Get it.",
-      "value": ""
-    },
-    "COMMAND_HAND_LER": {
-      "description": "Set this one with only one the symbol to use it before your command to run like . , ' `",
-      "value": ".",
-      "required": false
-    },
+
     "ENV": {
-      "description": "Setting this to ANYTHING will enable heroku.",
-      "value": "ANYTHING",
-      "required": false
+
+      "description": "لا تغيــرهـــا",
+
+      "value": "ANYTHING"
+
     },
+
+    "COMMAND_HAND_LER": {
+
+      "description": "لا تغيــرهـــا",
+
+      "value": "."
+
+    },
+
+    "STRING_SESSION": {
+
+      "description": "كـــود تيـــرمكـــس - الكـود الكبيـر مـن حـافظـة حسـابـك",
+
+      "value": ""
+
+    },
+
+    "TG_BOT_TOKEN": {
+
+      "description": "تـــوكـــن البـــوت - من بـوت فـاذر〔 @Botfather 〕..",
+
+      "value": ""
+
+    },
+
     "HEROKU_API_KEY": {
-      "description": "Required for updating the bot and other stuff get it from https://dashboard.heroku.com/account",
+
+      "description": "كـــود مفتـــاح هيروكـــو - تروح ع الرابـط » https://dashboard.heroku.com/account  ع آخـر خانـه وتنسـخ الكـود لهنـا",
+
       "value": "",
+
       "required": false
+
     },
+
     "HEROKU_APP_NAME": {
-      "description": "YOUR app name ",
+
+      "description": "ســـم التطبيـــق - نفـس اول مربـع بالقائمـة نسـخ لصـق حـروف انكلـش صغيـره",
+
       "value": "",
+
       "required": false
+
     },
+
     "TZ": {
-      "description": "Required for Correct Time on autopic/get time. Know your timezone from http://www.timezoneconverter.com/cgi-bin/findzone.tzc",
-      "value": "Asia/Kolkata",
+
+      "description": "المنطقـــه الزمنيـــه لا تغيــرهـــا",
+
+      "value": "Asia/Baghdad",
+
       "required": false
+
     },
+
     "UPSTREAM_REPO": {
-      "description": "if you need custom deploy then type your git repo link",
-      "value": "Codex",
+
+      "description": "رمز السورس لا تغيره ابدا",
+
+      "value": "https://github.com/asaaqa/Codex",
+
       "required": false
+
     }
-  },
-  "addons": [{
-    "plan": "heroku-postgresql",
-    "options": {
-      "version": "12"
-    }
-  }],
+
+    },
+
+  "addons": ["heroku-postgresql", "herokuconnect:demo"], 
+ 
+
   "buildpacks": [{
-    "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+
+    "url":"https://github.com/asaaqaa/Heroku-Buildpack-FFMPEG-latest"
+
   },{
+
     "url":"https://github.com/heroku/heroku-buildpack-google-chrome"
+
   },{
+
     "url":"https://github.com/heroku/heroku-buildpack-chromedriver"
+
   },{
-    "url": "https://github.com/opendoor-labs/heroku-buildpack-p7zip"
+
+    "url": "https://github.com/riganf/heroku-buildpack-p7zip"
+
   },{
+
+    "url": "https://github.com/rahulps1000/heroku-buildpack-nodejs"
+
+  },{
+
     "url": "https://github.com/heroku/heroku-buildpack-apt.git"
+
   },{
+
     "url": "https://github.com/chrismytton/heroku-buildpack-jq"
+
   },{
+
     "url": "heroku/python"
-  }]
-}
+
+  }],
+
+  "stack": "heroku-22"
+
+    }
