@@ -127,7 +127,7 @@
 
   "buildpacks": [{
 
-    "url":"https://github.com/asaaqaa/Heroku-Buildpack-FFMPEG-latest"
+    "url":"https://github.com/asaaqa/Heroku-Buildpack-FFMPEG-latest"
 
   },{
 
