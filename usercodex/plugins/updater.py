@@ -36,7 +36,7 @@ UPSTREAM_REPO_BRANCH = Config.UPSTREAM_REPO_BRANCH
 REPO_REMOTE_NAME = "temponame"
 IFFUCI_ACTIVE_BRANCH_NAME = "master"
 NO_HEROKU_APP_CFGD = "no heroku application found, but a key given? 😕 "
-HEROKU_GIT_REF_SPEC = "HEAD:refs/heads/master"
+HEROKU_GIT_REF_SPEC = "HEAD:refs/heads/Test"
 RESTARTING_APP = "re-starting heroku application"
 IS_SELECTED_DIFFERENT_BRANCH = (
     "looks like a custom branch {branch_name} "
@@ -107,7 +107,7 @@ async def pull(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     xedoc = await event.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`"
+        "`ᯓ 𝗦𝗢𝗨𝗥𝗖𝗘 𝗭𝗧𝗛𝗢𝗡 - تحـديثـات السـورس\n**•─────────────────•**\n\n**•⎆┊تم التحـديث ⎌ بنجـاح**\n**•⎆┊جـارِ إعـادة تشغيـل بـوت زدثــون ⎋ **\n**•⎆┊انتظـࢪ مـن 2 - 1 دقيقـه . . .📟**`"
     )
     await event.client.reload(xedoc)
 
@@ -159,7 +159,7 @@ async def push(event, repo, ups_rem, ac_br, txt):
     else:
         remote = repo.create_remote("heroku", heroku_git_url)
     try:
-        remote.push(refspec="HEAD:refs/heads/master", force=True)
+        remote.push(refspec="HEAD:refs/heads/Test", force=True)
     except Exception as error:
         await event.edit(f"{txt}\n**Error log:**\n`{error}`")
         return repo.__del__()
@@ -234,7 +234,7 @@ async def upstream(event):
         origin = repo.create_remote("upstream", off_repo)
         origin.fetch()
         force_update = True
-        repo.create_head("master", origin.refs.master)
+        repo.create_head("Test", origin.refs.master)
         repo.heads.master.set_tracking_branch(origin.refs.master)
         repo.heads.master.checkout(True)
     ac_br = repo.active_branch.name
@@ -311,7 +311,7 @@ async def upstream(event):
 
 
 @codex.cod_cmd(
-    pattern="codex -master$",
+    pattern="codex -Test$",
     command=("codex", plugin_category),
     info={
         "header": "To update to Codex (For vEg peeps).",
@@ -320,7 +320,7 @@ async def upstream(event):
             "codex -master": "to update to the original repository, if you fork.",
         },
         "usage": [
-            "{tr}codex -master",
+            "{tr}codex -Test",
         ],
     },
 )
@@ -340,4 +340,4 @@ async def variable(var):
         )
     heroku_var = app.config()
     await edit_or_reply(var, f"`Switch... wait for 2-3 minutes.`")
-    heroku_var["UPSTREAM_REPO"] = "https://github.com/Codex51/Codex"
+    heroku_var["UPSTREAM_REPO"] = "https://github.com/asaaqa/Codex"
