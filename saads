@@ -20,7 +20,7 @@ _get_ziplink () {
         then
             echo "${UPSTREAM_REPO}/archive/${UPSTREAM_REPO_BRANCH}.zip"
         else
-            echo "${UPSTREAM_REPO}/archive/master.zip"
+            echo "${UPSTREAM_REPO}/archive/Test.zip"
         fi
     else
         echo "aHR0cHM6Ly9naXRodWIuY29tL0NvZGV4L0NvZGV4L2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
@@ -51,8 +51,8 @@ _run_python_code() {
 _run_Codex_git() {
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO = "https://github.com/Codex51/Codex"
-ACTIVE_BRANCH_NAME = "master"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/asaaqa/Codex"
+ACTIVE_BRANCH_NAME = "Test"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
 origin.fetch()
@@ -65,7 +65,7 @@ _run_cod_git() {
     $(_run_python_code 'from git import Repo
 import sys
 OFFICIAL_UPSTREAM_REPO="'$repolink'"
-ACTIVE_BRANCH_NAME = "'$UPSTREAM_REPO_BRANCH'" or "master"
+ACTIVE_BRANCH_NAME = "'$UPSTREAM_REPO_BRANCH'" or "Test"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
 origin.fetch()
