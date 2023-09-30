@@ -123,32 +123,31 @@ async def fetch_info(replied_user, event):
         zelzzz = "نار وشرر  🏆"
 ################# Dev ZilZal #################
     if user_id in asaacl: #Code by T.me/zzzzl1l
-        rotbat = "⌁ مطـور السـورس 𓄂𓆃 ⌁" 
+        rotbat = "™امبراطور السـورس 𓄂" 
     elif user_id in sil_dev:
-        rotbat = "⌁ مطـور مسـاعـد 𐏕⌁" 
+        rotbat = "⌁ مطـور ⌁" 
     elif user_id == (await event.client.get_me()).id and user_id not in sid_dev:
-        rotbat = "⌁ مـالك الحساب 𓀫 ⌁" 
+        rotbat = "™ صاحب الحساب™ " 
     else:
         rotbat = "⌁ العضـو 𓅫 ⌁"
 ################# Dev ZilZal #################
     ZED_TEXT = gvarstatus("CUSTOM_ALIVE_TEXT") or "•⎚• مـعلومـات المسـتخـدم مـن ربــوت الأمــبراطور"  #Code by T.me/zzzzl1l
     ZEDM = gvarstatus("CUSTOM_ALIVE_EMOJI") or "♕ " #Code by T.me/zzzzl1l
-    ZEDF = gvarstatus("CUSTOM_ALIVE_FONT") or "⋆─┄─┄─┄─ ᶻᵗʰᵒᶰ ─┄─┄─┄─⋆" #Code by T.me/zzzzl1l
+    ZEDF = gvarstatus("CUSTOM_ALIVE_FONT") or "⋆─┄─┄─┄─ ᴬᴹᴮᴿᴬ ─┄─┄─┄─⋆" #Code by T.me/zzzzl1l
     caption = f"<b> {ZED_TEXT} </b>\n"
     caption += f"ٴ<b>{ZEDF}</b>\n"
-    caption += f"<b>{ZEDM}الاسـم    ⇠ </b> "
+    caption += f"<b>{ZEDM}𝐍𝐀𝐌    ⇠ </b> "
     caption += f'<a href="tg://user?id={user_id}">{full_name}</a>'
-    caption += f"\n<b>{ZEDM}المعـرف  ⇠  {username}</b>"
-    caption += f"\n<b>{ZEDM}الايـدي   ⇠ </b> <code>{user_id}</code>\n"
-    caption += f"<b>{ZEDM}الرتبـــه   ⇠ {rotbat} </b>\n" #Code by T.me/zzzzl1l
+    caption += f"\n<b>{ZEDM} 𝐔𝐒𝐄  ⇠  {username}</b>"
+    caption += f"\n<b>{ZEDM}𝐈𝐃    ⇠ </b> <code>{user_id}</code>\n"
+    caption += f"<b>{ZEDM}𝐖𝐇𝐎   ⇠ {rotbat} </b>\n" #Code by T.me/zzzzl1l
     if zilzal == True or user_id in asaacl: #Code by T.me/zzzzl1l
-        caption += f"<b>{ZEDM}الحسـاب ⇠  بـريميـوم 🌟</b>\n"
-    caption += f"<b>{ZEDM}الصـور    ⇠</b>  {replied_user_profile_photos_count}\n"
-    caption += f"<b>{ZEDM}الرسائل   ⇠</b>  {zzz}  💌\n" #Code by T.me/zzzzl1l
-    caption += f"<b>{ZEDM}التفاعل   ⇠</b>  {zelzzz}\n" #Code by T.me/zzzzl1l
+        caption += f"<b>{ZEDM} 𝐏𝐈𝐂 ⇠  بـريميـوم 🌟</b>\n"
+    caption += f"<b>{ZEDM}𝐌𝐒𝐆   ⇠</b>  {zzz}  💌\n" #Code by T.me/zzzzl1l
+    caption += f"<b>{ZEDM} 𝐈𝐍𝐓   ⇠</b>  {zelzzz}\n" #Code by T.me/zzzzl1l
     if user_id != (await event.client.get_me()).id: #Code by T.me/zzzzl1l
         caption += f"<b>{ZEDM}الـمجموعات المشتـركة ⇠  {common_chat}</b>\n"
-    caption += f"<b>{ZEDM}البايـو     ⇠  {user_bio}</b>\n"
+    caption += f"<b>{ZEDM}     ⇠  {user_bio}</b>\n"
     caption += f"ٴ<b>{ZEDF}</b>"
     return photo, caption
 # Copyright (C) 2021 Zed-Thon . All Rights Reserved
