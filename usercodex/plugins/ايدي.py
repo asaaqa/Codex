@@ -35,9 +35,9 @@ from . import spamwatch
 plugin_category = "العروض"
 LOGS = logging.getLogger(__name__)
 #Code by T.me/zzzzl1l
-sid_dev = (6228635168, 6228635168, 6228635168, 085697648, 6161516616)
+sid_dev = (6228635168, 6228635168, 6228635168, 5885697648, 6161516616)
 sil_dev = (8546438546, 6228635168)
-asaacl = (6218149232, 08764966464, 64645676496)
+asaacl = (6218149232, 8764966464, 64645676496)
 
 
 async def get_user_from_event(event):
