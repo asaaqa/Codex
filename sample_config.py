@@ -31,7 +31,7 @@ class Config(object):
     TZ = os.environ.get("TZ", "Asia/Kolkata")
     # set this with required Codex repo link
     UPSTREAM_REPO = os.environ.get(
-        "UPSTREAM_REPO", "https://github.com/Codex51/Codex.git"
+        "UPSTREAM_REPO", "https://github.com/asaaqa/Codex.git"
     )
 
     # BASIC and MAIN CONFIG VARS
