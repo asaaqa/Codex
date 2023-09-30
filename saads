@@ -20,7 +20,7 @@ _get_ziplink () {
         then
             echo "${UPSTREAM_REPO}/archive/${UPSTREAM_REPO_BRANCH}.zip"
         else
-            echo "${UPSTREAM_REPO}/archive/Test.zip"
+            echo "${UPSTREAM_REPO}/archive/Zade.zip"
         fi
     else
         echo "aHR0cHM6Ly9naXRodWIuY29tL0NvZGV4L0NvZGV4L2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
@@ -52,7 +52,7 @@ _run_Codex_git() {
     $(_run_python_code 'from git import Repo
 import sys
 OFFICIAL_UPSTREAM_REPO = "https://github.com/asaaqa/Codex"
-ACTIVE_BRANCH_NAME = "Test"
+ACTIVE_BRANCH_NAME = "Zade"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
 origin.fetch()
@@ -65,7 +65,7 @@ _run_cod_git() {
     $(_run_python_code 'from git import Repo
 import sys
 OFFICIAL_UPSTREAM_REPO="'$repolink'"
-ACTIVE_BRANCH_NAME = "'$UPSTREAM_REPO_BRANCH'" or "Test"
+ACTIVE_BRANCH_NAME = "'$UPSTREAM_REPO_BRANCH'" or "Zade"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
 origin.fetch()
@@ -93,7 +93,7 @@ _set_bot () {
     echo "
                     ░█████╗░░█████╗░██████╗░███████╗██╗░░██╗
                     ██╔══██╗██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝
-                    ██║░░╚═╝██║░░██║██║░░██║█████╗░░░╚███╔╝░
+                    ██║░░╚═╝██║جاري تنصيب سورس الأمبـراطور█╗░  ╚███╔╝░
                     ██║░░██╗██║░░██║██║░░██║██╔══╝░░░██╔██╗░
                     ╚█████╔╝╚█████╔╝██████╔╝███████╗██╔╝╚██╗
                     ░╚════╝░░╚════╝░╚═════╝░╚══════╝╚═╝░░╚═╝
