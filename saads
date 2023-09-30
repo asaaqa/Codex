@@ -87,7 +87,7 @@ _set_bot () {
     _run_Codex_git
     cd $CODPATH
     _run_cod_git
-    python3 ../setup/updater.py ../requirements.txt requirements.txt
+    python3 ../setup/updates.py ../requirements.txt requirements.txt
     chmod -R 755 bin
     echo "    Starting CodexUserbot    "
     echo "
