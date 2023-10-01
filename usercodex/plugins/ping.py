@@ -35,7 +35,14 @@ async def _(event):
         end = datetime.now()
         ms = (end - start).microseconds / 1000
         await codevent.edit(
-            f"<b><i>☞ Pong</b></i>\n➥ {ms} <b><i>ms\n➥ Bot of {hmention}</b></i>",
+            f"**╔═════════════════════╗**\n\n"
+        f"**╚═════════════════════╝** \n\n"
+        f"⍟ **إصدار تليثون** --'{telever}' \n\n"
+        f"⍟ **وقت التشغيل** --'{uptime}' \n\n"
+        f"⍟ **إصدار ديزبوت**-'{jmvr}' \n\n"
+        f"**╔═════════════════════╗**\n"
+        f"**       ㅤ㋱ '{ping}' ㋱ㅤ      **\n"  
+        f"**╚═════════════════════╝**\n",
             parse_mode="html",
         )
 
