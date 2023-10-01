@@ -7,9 +7,7 @@
 
 import os
 from datetime import datetime
-
-from HAIDAR_MY import HAIDAR_MY
-
+from platform import python_version
 #
 from . import hmention, reply_id
 
