@@ -35,8 +35,15 @@ async def _(event):
         end = datetime.now()
         ms = (end - start).microseconds / 1000
         await codevent.edit(
-            f"**█▀█ █▀█ █▄░█ █▀▀ █ \n█▀▀ █▄█ █░▀█ █▄█ ▄**\n\n✥ **✪ Tɪᴍᴇ Tᴀᴋᴇɴ:** `{ms}` ms \n✥ **✪ Mᴀsᴛᴇʀ:** `{ALIVE_NAME}` \n✥ **✪ Assɪsᴛᴀɴᴛ:** __@{TG_BOT_USER_NAME}__",
-            parse_mode="html",
+            f"**╔═════════════════════╗**\n\n"
+            f"**╚═════════════════════╝** \n\n"
+            f"⍟ **إصدار تليثون** --'{telever}' \n\n"
+            f"⍟ **وقت التشغيل** --'{uptime}' \n\n"
+            f"⍟ **إصدار الأمبراطور**-'{ms}' \n\n"
+            f"**╔═════════════════════╗**\n"
+            f"**       ㅤ㋱ '{ping}' ㋱ㅤ      **\n"  
+            f"**╚═════════════════════╝**\n",
+            parse_mode="html",,
         )
 
 
