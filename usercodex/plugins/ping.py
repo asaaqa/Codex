@@ -43,7 +43,7 @@ async def _(event):
             f"**╔═════════════════════╗**\n"
             f"**       ㅤ㋱ '{ping}' ㋱ㅤ      **\n"  
             f"**╚═════════════════════╝**\n",
-            parse_mode="html",,
+            parse_mode="html",
         )
 
 
