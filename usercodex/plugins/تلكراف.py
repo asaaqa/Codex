@@ -81,8 +81,8 @@ async def _(event):
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
             await codevent.edit(
-                f"**❒-الرابط : **[أضـغـط هنـا](https://telegra.ph{media_urls[0]})\
-                    \n**❒الوقت المستغرق : **`{ms} seconds.`",
+                f"**الرابط : **[أضـغـط هنـا](https://telegra.ph{media_urls[0]})\
+                    \n**الوقت المستغرق : **`{ms} ثانيه.`",
                 link_preview=True,
             )
     elif input_str in ["text", "t"]:
