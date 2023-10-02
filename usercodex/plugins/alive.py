@@ -1,3 +1,4 @@
+""" 
 import random
 import re
 import time
@@ -102,3 +103,4 @@ async def amireallyalive(event):
 async def on_plug_in_callback_query_handler(event):
     statstext = await codalive(StartTime)
     await event.answer(statstext, cache_time=0, alert=True)
+"""" 
