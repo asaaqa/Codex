@@ -30,7 +30,7 @@ def resize_image(image):
 
 
 @codex.cod_cmd(
-    pattern="تلكراف ?(m|t|media|text)(?:\s|$)([\s\S]*)",
+    pattern="(ت(ل)?ك(راف)?) ?(m|t|مديا|نص)(?:\s|$)([\s\S]*)",
     command=("تلكراف", plugin_category),
     info={
         "header": "To get telegraph link.",
