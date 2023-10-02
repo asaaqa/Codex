@@ -5,7 +5,7 @@ from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
 
 from ..Config import Config
-from . import (
+from usercodex.plugins import (
     ALIVE_NAME,
     AUTONAME,
     BOTLOG,
