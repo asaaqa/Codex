@@ -1,5 +1,5 @@
-# ported from uniborg
-# https://github.com/muhammedfurkan/UniBorg/blob/master/stdplugins/ezanvakti.py
+#سورس#الامبراطور 
+#تعريب#الامبراطور#اليسع
 import json
 
 import requests
@@ -11,17 +11,17 @@ plugin_category = "extra"
 
 
 @codex.cod_cmd(
-    pattern="adzan(?:\s|$)([\s\S]*)",
-    command=("adzan", plugin_category),
+    pattern="الاذان:\s|$)([\s\S]*)",
+    command=("الاذان", plugin_category),
     info={
-        "header": "Shows you the Islamic prayer times of the given city name.",
+        "header": "يظهر لك أوقات الصلاة الإسلامية لاسم المدينة المحدد.",
         "note": "you can set default city by using {tr}setcity command.",
-        "usage": "{tr}azan <city name>",
-        "examples": "{tr}azan hyderabad",
+        "usage": "{tr}الاذان <اسم المدينه>",
+        "examples": "{tr}azan عدن",
     },
 )
 async def get_adzan(adzan):
-    "Shows you the Islamic prayer times of the given city name"
+    "يظهر لك أوقات الصلاة الإسلامية لاسم المدينة المحدد"
     input_str = adzan.pattern_match.group(1)
     LOKASI = gvarstatus("DEFCITY") or "Delhi" if not input_str else input_str
     url = f"http://muslimsalat.com/{LOKASI}.json?key=bd099c5825cbedb9aa934e255a81a5fc"
@@ -31,15 +31,15 @@ async def get_adzan(adzan):
             adzan, f"`Couldn't fetch any data about the city {LOKASI}`", 5
         )
     result = json.loads(request.text)
-    codresult = f"<b>Islamic prayer times </b>\
-            \n\n<b>City     : </b><i>{result['query']}</i>\
-            \n<b>Country  : </b><i>{result['country']}</i>\
-            \n<b>Date     : </b><i>{result['items'][0]['date_for']}</i>\
-            \n<b>Fajr     : </b><i>{result['items'][0]['fajr']}</i>\
-            \n<b>Shurooq    : </b><i>{result['items'][0]['shurooq']}</i>\
-            \n<b>Dhuhr    : </b><i>{result['items'][0]['dhuhr']}</i>\
-            \n<b>Asr    : </b><i>{result['items'][0]['asr']}</i>\
-            \n<b>Maghrib    : </b><i>{result['items'][0]['maghrib']}</i>\
-            \n<b>Isha     : </b><i>{result['items'][0]['isha']}</i>\
+    codresult = f"<b>**❒:أوقات الصلوات الإسلامية ** </b>\
+            \n\n<b>**❂:مدينة**  : </b><i>{result['query']}</i>\
+            \n<b>**❂:لدولة**   : </b><i>{result['country']}</i>\
+            \n<b>**❂:التاريخ**  : </b><i>{result['items'][0]['date_for']}</i>\
+            \n<b>**❂:الفجر**  : </b><i>{result['items'][0]['fajr']}</i>\
+            \n<b>**❂:االصباح*  : </b><i>{result['items'][0]['shurooq']}</i>\
+            \n<b>**❂:الضهر**  : </b><i>{result['items'][0]['dhuhr']}</i>\
+            \n<b>**❂:العصر**  : </b><i>{result['items'][0]['asr']}</i>\
+            \n<b>**❂:المغرب** : </b><i>{result['items'][0]['maghrib']}</i>\
+            \n<b>**❂:الفجر**  : </b><i>{result['items'][0]['isha']}</i>\
     "
     await edit_or_reply(adzan, codresult, "html")
