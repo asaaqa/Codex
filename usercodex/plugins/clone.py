@@ -5,7 +5,7 @@ from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
 
 from ..Config import Config
-from usercodex.plugins import (
+from . import (
     ALIVE_NAME,
     AUTONAME,
     BOTLOG,
@@ -17,7 +17,7 @@ from usercodex.plugins import (
 )
 from usercodex.sql_helper.globals import gvarstatus
 plugin_category = "utils"
-DEFAULTUSER = str(AUTONAME) if AUTONAME else str(ALIVE_NAME)
+DEFAULTUSER = gvarstatus("FIRST_NAME") or ALIVE_NAME
 DEFAULTUSERBIO = Config.DEFAULT_BIO or "{الكلمة الطيبة تكسر العود اليابس}" 
 DFTYUO = gvarstatus("DFTYUO") or "(اعادة الحساب|اعادة)"
 
