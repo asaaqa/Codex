@@ -30,8 +30,8 @@ def resize_image(image):
 
 
 @codex.cod_cmd(
-    pattern="(t(ele)?g(raph)?) ?(m|t|media|text)(?:\s|$)([\s\S]*)",
-    command=("telegraph", plugin_category),
+    pattern="تلكراف(?:\s|$)([\s\S]*)",
+    command=("تلكراف", plugin_category),
     info={
         "header": "To get telegraph link.",
         "description": "Reply to text message to paste that text on telegraph you can also pass input along with command \
@@ -41,20 +41,19 @@ def resize_image(image):
             "t or text": "To get telegraph link of replied text you can use custom title.",
         },
         "usage": [
-            "{tr}tgm",
-            "{tr}tgt <title(optional)>",
-            "{tr}telegraph media",
-            "{tr}telegraph text <title(optional)>",
+            "{tr}تلكراف",
+            "{tr}تلكراف <title(optional)>",
+            "{tr}تلكراف  <بالرد على الوسائط>",
         ],
     },
 )  # sourcery no-metrics
 async def _(event):
-    "To get telegraph link."
+    "❒- للحصول على رابط التلغراف"
     codevent = await edit_or_reply(event, "`processing........`")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f"Created New Telegraph account {auth_url} for the current session. \n**Do not give this url to anyone, even if they say they are from Telegram!**",
+            f"**❒[❂𝗦𝗢𝗨𝗥𝗖𝗘𖢏𝗘𝗠𝗣𝗘𝗥𝗢𝗥❂](t.me/Mlze1bot)**\n  ❒- شكراً لإستخدام سورس الأمبـراطور",
         )
     optional_title = event.pattern_match.group(5)
     if not event.reply_to_msg_id:
