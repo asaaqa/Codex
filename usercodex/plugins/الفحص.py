@@ -90,7 +90,7 @@ async def amireallyalive(event):
     "نوع من عرض تفاصيل الروبوت بواسطة الروبوت المضمن الخاص بك"
     reply_to_id = await reply_id(event)
     EMOJI = gvarstatus("ALIVE_EMOJI") or "✧✧"
-    cod_caption = f"**✮ -  بـوت  𝑨𝑴𝑩𝑹𝑶   يعمـل .. جيداً    **\n"
+    cod_caption = f"**✮بـوت  𝑨𝑴𝑩𝑹𝑶   يعمـل .. جيداً**\n"
     cod_caption += f"**{EMOJI}  إصدار تليثيون :** `{version.__version__}\n`"
     cod_caption += f"**{EMOJI} إصدار 𝑨𝑴𝑩𝑹𝑶 :** `{codversion}`\n"
     cod_caption += f"**{EMOJI} إصدار باثيون :** `{python_version()}\n`"
