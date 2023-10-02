@@ -15,19 +15,15 @@ from usercodex.plugins import (
     edit_delete,
     get_user_from_event,
 )
-
+from usercodex.sql_helper.globals import gvarstatus
 plugin_category = "utils"
 DEFAULTUSER = str(AUTONAME) if AUTONAME else str(ALIVE_NAME)
-DEFAULTUSERBIO = (
-    str(DEFAULT_BIO)
-    if DEFAULT_BIO
-    else "sıɥʇ ǝpoɔǝp uǝɥʇ llıʇu∩ ˙ ǝɔɐds ǝʇɐʌıɹd ǝɯos ǝɯ ǝʌı⅁˙"
-)
-
+DEFAULTUSERBIO = Config.DEFAULT_BIO or "{الكلمة الطيبة تكسر العود اليابس}" 
+DFTYUO = gvarstatus("DFTYUO") or "(اعادة الحساب|اعادة)"
 
 @codex.cod_cmd(
-    pattern="clone(?:\s|$)([\s\S]*)",
-    command=("clone", plugin_category),
+    pattern="انتحال(?:\s|$)([\s\S]*)",
+    command=("انتحال", plugin_category),
     info={
         "header": "To clone account of mentiond user or replied user",
         "usage": "{tr}clone <username/userid/reply>",
@@ -67,8 +63,8 @@ async def _(event):
 
 
 @codex.cod_cmd(
-    pattern="revert$",
-    command=("revert", plugin_category),
+    pattern="{DFTYUO}$",
+    command=("إرجاع", plugin_category),
     info={
         "header": "To revert back to your original name , bio and profile pic",
         "note": "For proper Functioning of this command you need to set AUTONAME and DEFAULT_BIO with your profile name and bio respectively.",
@@ -88,7 +84,7 @@ async def _(event):
     await event.client(functions.account.UpdateProfileRequest(about=bio))
     await event.client(functions.account.UpdateProfileRequest(first_name=name))
     await event.client(functions.account.UpdateProfileRequest(last_name=blank))
-    await edit_delete(event, "successfully reverted to your account back")
+    await edit_delete(event, "تم إرجاع حسابك الى الوضع الأصلي")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
