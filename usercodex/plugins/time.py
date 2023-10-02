@@ -1,3 +1,5 @@
+#########الامبراطور#########اليسع#########
+#سورس#الامبراطور 
 import os
 from datetime import datetime as dt
 
@@ -21,7 +23,7 @@ FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
 
 
 async def get_tz(con):
-    """Get time zone of the given country."""
+    """❒- لمعرفة وقت والتاريخ لمدينة معينة"""
     if "(Uk)" in con:
         con = con.replace("Uk", "UK")
     if "(Us)" in con:
@@ -45,8 +47,8 @@ async def get_tz(con):
 
 
 @codex.cod_cmd(
-    pattern="ctime(?:\s|$)([\s\S]*)(?<![0-9])(?: |$)([0-9]+)?",
-    command=("ctime", plugin_category),
+    pattern="وقت(?:\s|$)([\s\S]*)(?<![0-9])(?: |$)([0-9]+)?",
+    command=("وقت", plugin_category),
     info={
         "header": "To get current time of a paticular country",
         "note": "For country names check [this link](https://telegra.ph/country-names-10-24)",
@@ -112,11 +114,11 @@ async def time_func(tdata):
 
 
 @codex.cod_cmd(
-    pattern="time(?:\s|$)([\s\S]*)",
-    command=("time", plugin_category),
+    pattern="الساعه(?:\s|$)([\s\S]*)",
+    command=("الساعه", plugin_category),
     info={
-        "header": "To show current time.",
-        "description": "shows current default time you can change by changing TZ in heroku vars.",
+        "header": "❒- لمعرفة الوقت والتاريخ الميلادي الحالي والان",
+        "description": "يُظهر الوقت الافتراضي الحالي الذي يمكنك تغييره عن طريق تغيير TZ في Heroku vars.",
         "usage": "{tr}time",
     },
 )
