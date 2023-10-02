@@ -1,1 +1,1 @@
-worker: bash saads
+worker: bash saads.sh
