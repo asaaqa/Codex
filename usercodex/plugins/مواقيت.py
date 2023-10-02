@@ -11,13 +11,13 @@ plugin_category = "extra"
 
 
 @codex.cod_cmd(
-    pattern="الاذان:\s|$)([\s\S]*)",
-    command=("الاذان", plugin_category),
+    pattern="اذان(?:\s|$)([\s\S]*)",
+    command=("اذان", plugin_category),
     info={
         "header": "يظهر لك أوقات الصلاة الإسلامية لاسم المدينة المحدد.",
         "note": "you can set default city by using {tr}setcity command.",
-        "usage": "{tr}الاذان <اسم المدينه>",
-        "examples": "{tr}azan عدن",
+        "usage": "{tr}اذان <اسم المدينه>",
+        "examples": "{tr}اذان عدن",
     },
 )
 async def get_adzan(adzan):
