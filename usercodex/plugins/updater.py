@@ -33,6 +33,8 @@ heroku_api = "https://api.heroku.com"
 
 UPSTREAM_REPO_BRANCH = Config.UPSTREAM_REPO_BRANCH
 
+UPSTREAM_REPO_BRANCH = "Zade"
+
 REPO_REMOTE_NAME = "temponame"
 IFFUCI_ACTIVE_BRANCH_NAME = "Zade"
 NO_HEROKU_APP_CFGD = "no heroku application found, but a key given? 😕 "
