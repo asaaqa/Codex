@@ -45,16 +45,19 @@ async def _(event):
         last_name = last_name.replace("\u2060", "")
     if last_name is None:
         last_name = "⁪⁬⁮⁮⁮⁮ ‌‌‌‌"
-    replied_user = await event.client(GetFullUserRequest(replied_user.id))
+    replied_user = (await event.client(GetFullUserRequest(replied_user.id))).full_user
     user_bio = replied_user.about
     if user_bio is not None:
         user_bio = replied_user.about
     await event.client(functions.account.UpdateProfileRequest(first_name=first_name))
     await event.client(functions.account.UpdateProfileRequest(last_name=last_name))
     await event.client(functions.account.UpdateProfileRequest(about=user_bio))
-    pfile = await event.client.upload_file(profile_pic)
+    try:
+        pfile = await event.client.upload_file(profile_pic)
+    except Exception as e:
+        return await edit_delete(event, f"**عملية انتحال فاشلة بسبب:**\n__{e}__")
     await event.client(functions.photos.UploadProfilePhotoRequest(pfile))
-    await edit_delete(event, "**LET US BE AS ONE**")
+    await edit_delete(event, "**-♕- تم عملية الانتحال بنجاح**")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
