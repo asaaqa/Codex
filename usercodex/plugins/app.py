@@ -13,10 +13,10 @@ plugin_category = "utils"
 
 
 @codex.cod_cmd(
-    pattern="app ([\s\S]*)",
-    command=("app", plugin_category),
+    pattern="تطبيق ([\s\S]*)",
+    command=("تطبيق", plugin_category),
     info={
-        "header": "To search any app in playstore",
+        "header": "للبحث في أي تطبيق في PlayStore",
         "description": "Searches the app in the playstore and provides the link to the app in playstore and fetchs app details",
         "usage": "{tr}app <name>",
     },
