@@ -30,7 +30,7 @@ def resize_image(image):
 
 
 @codex.cod_cmd(
-    pattern="تلكراف(?:\s|$)([\s\S]*)",
+    pattern="تلكراف ?(m|t|media|text)(?:\s|$)([\s\S]*)",
     command=("تلكراف", plugin_category),
     info={
         "header": "To get telegraph link.",
@@ -49,11 +49,11 @@ def resize_image(image):
 )  # sourcery no-metrics
 async def _(event):
     "❒- للحصول على رابط التلغراف"
-    codevent = await edit_or_reply(event, "`processing........`")
+    codevent = await edit_or_reply(event, "`جاري الاستخراج........`")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f"**❒[❂𝗦𝗢𝗨𝗥𝗖𝗘𖢏𝗘𝗠𝗣𝗘𝗥𝗢𝗥❂](t.me/Mlze1bot)**\n  ❒- شكراً لإستخدام سورس الأمبـراطور",
+            f"**❒",
         )
     optional_title = event.pattern_match.group(5)
     if not event.reply_to_msg_id:
