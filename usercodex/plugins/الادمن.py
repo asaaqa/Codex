@@ -64,8 +64,8 @@ UNBAN_RIGHTS = ChatBannedRights(
 LOGS = logging.getLogger(__name__)
 MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
-amb_dev =(5809896714, 6126535154)
-chv_dev =(6218149232, 6218149232)
+amb_dev = (5809896714, 6126535154)
+chv_dev = (6218149232, 6218149232)
 plugin_category = "الأدمن"
 # ================================================
 ASDFH = gvarstatus("C_SDFH") or "رفع مشرف"
