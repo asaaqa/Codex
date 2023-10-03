@@ -20,7 +20,7 @@ from ..sql_helper.global_collection import (
 )
 from ..sql_helper.globals import delgvar
 
-plugin_category = "tools"
+plugin_category = "ادوات"
 cmdhd = Config.COMMAND_HAND_LER
 
 LOGS = logging.getLogger(__name__)
@@ -186,10 +186,10 @@ async def push(event, repo, ups_rem, ac_br, txt):
 
 
 @codex.cod_cmd(
-    pattern="update(| -pull)?$",
-    command=("update", plugin_category),
+    pattern="تحديث(| -pull)?$",
+    command=("تحديث", plugin_category),
     info={
-        "header": "To update CodexUserbot.",
+        "header": "لعمل تحديث للسورس.",
         "description": "I recommend you to do update -push atlest once a week.",
         "options": {
             "-pull": "Will update bot but requirements doesnt update.",
