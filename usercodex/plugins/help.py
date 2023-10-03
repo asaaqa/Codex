@@ -12,7 +12,7 @@ cmdprefix = Config.COMMAND_HAND_LER
 plugin_category = "tools"
 
 hemojis = {
-    "الادمن": "👮‍♂️",
+    "الأدمن": "👮‍♂️",
     "البــوت": "🤖",
     "fun": "🎨",
     "misc": "🧩",
