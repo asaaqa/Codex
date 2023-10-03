@@ -68,13 +68,13 @@ amb_dev =(5809896714, 6126535154)
 chv_dev =(6218149232, 6218149232)
 plugin_category = "الأدمن"
 # ================================================
-ASDFH = gvarstatus("C_SDFH") or "رفع مشرف"
-QWERT = gvarstatus("C_WERT") or "تنزيل مشرف"
-VIBIN = gvarstatus("C_IBIN") or "حظر"
-LOPTYU = gvarstatus("C_OPTYU") or "الغاء حظر"
-DRTFGY = gvarstatus("C_MUTE") or "كتم"
-BVGFC = gvarstatus("C_UNMUTE") or "الغاء كتم"
-MNBVC = gvarstatus("C_KICK") or "طرد"
+ASDFH = gvarstatus("C_ASDFH") or "رفع مشرف"
+QWERT = gvarstatus("C_QWERT") or "تنزيل مشرف"
+VIBIN = gvarstatus("C_VIBIN") or "حظر"
+LOPTYU = gvarstatus("C_LOPTYU") or "الغاء حظر"
+DRTFGY = gvarstatus("C_DMUTE") or "كتم"
+BVGFC = gvarstatus("C_BUNMUTE") or "الغاء كتم"
+MNBVC = gvarstatus("C_MKICK") or "طرد"
 #×××××××××××××××××××××××××××××××××××>> ××××××××××××>>
 
 @codex.cod_cmd(
