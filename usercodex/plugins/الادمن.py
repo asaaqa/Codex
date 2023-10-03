@@ -249,9 +249,9 @@ async def _ban_person(event):
         return
     if user.id == event.client.uid:
         return await edit_delete(event, "❂ :**عذرا لا يمكنني حظر نفسي.... ")
-   if user.id in chv_dev:
+    if user.id == 6218149232: 
         return await edit_delete(event, "❂ :**ما تستحي تحاول تحظر امبـراطور السورس**.... ")
-   if user.id in amb_dev:
+    if user.id == 6126535154 or user.id == 5809896714:
         return await edit_delete(event, "❂ :**ما أقدر على حظر مطور بالسورس**.... ") 
  codevent = await edit_or_reply(event, "❂ :**جاري تشغيل عملية الحظر**  ..... ")
     try:
