@@ -12,8 +12,8 @@ cmdprefix = Config.COMMAND_HAND_LER
 plugin_category = "tools"
 
 hemojis = {
-    "admin": "👮‍♂️",
-    "bot": "🤖",
+    "الادمن": "👮‍♂️",
+    "البــوت": "🤖",
     "fun": "🎨",
     "misc": "🧩",
     "tools": "🧰",
@@ -127,8 +127,8 @@ async def cmdlist():
 
 
 @codex.cod_cmd(
-    pattern="help ?(-c|-p|-t)? ?([\s\S]*)?",
-    command=("help", plugin_category),
+    pattern="مساعده ?(-c|-p|-t)? ?([\s\S]*)?",
+    command=("مساعده", plugin_category),
     info={
         "header": "To get guide for catuserbot.",
         "description": "To get information or guide for the command or plugin",
@@ -170,8 +170,8 @@ async def _(event):
 
 
 @codex.cod_cmd(
-    pattern="cmds(?:\s|$)([\s\S]*)",
-    command=("cmds", plugin_category),
+    pattern="اوامر(?:\s|$)([\s\S]*)",
+    command=("اوامر", plugin_category),
     info={
         "header": "To show list of cmds.",
         "description": "if no input is given then will show list of all commands.",
@@ -203,8 +203,8 @@ async def _(event):
 
 
 @codex.cod_cmd(
-    pattern="s ([\s\S]*)",
-    command=("s", plugin_category),
+    pattern="بحث ([\s\S]*)",
+    command=("بحث", plugin_category),
     info={
         "header": "To search commands.",
         "examples": "{tr}s song",
@@ -224,8 +224,8 @@ async def _(event):
 
 
 @codex.cod_cmd(
-    pattern="dc$",
-    command=("dc", plugin_category),
+    pattern="العاصمه$",
+    command=("العاصمه", plugin_category),
     info={
         "header": "To show dc of your account.",
         "description": "Dc of your account and list of dc's will be showed",
