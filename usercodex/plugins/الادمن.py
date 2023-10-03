@@ -134,7 +134,7 @@ async def set_group_photo(event):  # sourcery no-metrics
         await event.client.send_message(
             BOTLOG_CHATID,
             "#GROUPPIC\n"
-            f"Group profile pic {process} successfully "
+            f"Group profile pic successfully "
             f"CHAT: {event.chat.title}(`{event.chat_id}`)",
         )
 
@@ -174,7 +174,7 @@ async def promote(event):
         await event.client(EditAdminRequest(event.chat_id, user.id, new_rights, rank))
     except BadRequestError:
         return await codevent.edit(NO_PERM)
-    await codevent.edit("**❂ : العضو** [{user.first_name}](tg://user?id={user.id})\n تم رفعه بنجاح..... ")
+    await codevent.edit("**❂ : رفع مشرف**\n\n ❂ :**تم رفعه مشرف بنجاح..**")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
