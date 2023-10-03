@@ -1,4 +1,4 @@
-from asyncio import sleep
+m asyncio import sleep
 
 from telethon import functions
 from telethon.errors import (
@@ -68,24 +68,24 @@ amb_dev =(5809896714, 6126535154)
 chv_dev =(6218149232, 6218149232)
 plugin_category = "الأدمن"
 # ================================================
-ASDFH = gvarstatus("C_ASDFH") or "رفع مشرف"
-QWERT = gvarstatus("C_QWERT") or "تنزيل مشرف"
-VIBIN = gvarstatus("C_VIBIN") or "حظر"
-LOPTYU = gvarstatus("C_LOPTYU") or "الغاء حظر"
-DRTFGY = gvarstatus("C_DMUTE") or "كتم"
-BVGFC = gvarstatus("C_BUNMUTE") or "الغاء كتم"
-MNBVC = gvarstatus("C_MKICK") or "طرد"
+ASDFH = gvarstatus("C_SDFH") or "رفع مشرف"
+QWERT = gvarstatus("C_WERT") or "تنزيل مشرف"
+VIBIN = gvarstatus("C_IBIN") or "حظر"
+LOPTYU = gvarstatus("C_OPTYU") or "الغاء حظر"
+DRTFGY = gvarstatus("C_MUTE") or "كتم"
+BVGFC = gvarstatus("C_UNMUTE") or "الغاء كتم"
+MNBVC = gvarstatus("C_KICK") or "طرد"
 #×××××××××××××××××××××××××××××××××××>> ××××××××××××>>
 
 @codex.cod_cmd(
-    pattern="صوره(وضع|حذف)$",
+    pattern="صوره(-وضع|-حذف)$",
     command=("صوره", plugin_category),
     info={
         "header": "❂ : لـ وضع صورة للجروب ",
         "وصف": "❂ : بالــ رد على الصوره",
         "الامر": {
             "وضع": "❂ : لوضع الصورة للجروب",
-           "حذف": "❂ : لحذف الصورة من الجروب",
+            "حذف": "❂ : لحذف الصورة من الجروب ",
         },
         "الاوامر": [
             "{tr}صوره وضع بالرد على الصورة بالجروب",
@@ -98,7 +98,7 @@ MNBVC = gvarstatus("C_MKICK") or "طرد"
 async def set_group_photo(event):  # sourcery no-metrics
     "For changing Group dp"
     flag = (event.pattern_match.group(1)).strip()
-    if flag == "-s":
+    if flag == "-وضع":
         replymsg = await event.get_reply_message()
         photo = None
         if replymsg and replymsg.media:
@@ -140,7 +140,7 @@ async def set_group_photo(event):  # sourcery no-metrics
 
 
 @codex.cod_cmd(
-    pattern="{ASDFH}(?:\s|$)([\s\S]*)",
+    pattern="رفع مشرف(?:\s|$)([\s\S]*)",
     command=("رفع مشرف", plugin_category),
     info={
         "header": "لرفع العضو مشرف بالجروب",
@@ -185,7 +185,7 @@ async def promote(event):
 
 
 @codex.cod_cmd(
-    pattern="{QWERT}(?:\s|$)([\s\S]*)",
+    pattern="تنزيل مشرف(?:\s|$)([\s\S]*)",
     command=("تنزيل مشرف", plugin_category),
     info={
         "header": "❂ : لرفع العضو مشرف بالجروب بكل الصلاحيات",
@@ -229,15 +229,15 @@ async def demote(event):
 
 
 @codex.cod_cmd(
-    pattern="{VIBIN}(?:\s|$)([\s\S]*)",
+    pattern="حظر(?:\s|$)([\s\S]*)",
     command=("حظر", plugin_category),
     info={
         "header": "Will ban the guy in the group where you used this command.",
         "description": "Permanently will remove him from this group and he can't join back\
             \nNote : You need proper rights for this.",
         "usage": [
-            "{tr}ban <userid/username/reply>",
-            "{tr}ban <userid/username/reply> <reason>",
+            "{tr}حظر <userid/username/reply>",
+            "{tr}حظر <userid/username/reply> <reason>",
         ],
     },
     groups_only=True,
@@ -250,11 +250,11 @@ async def _ban_person(event):
         return
     if user.id == event.client.uid:
         return await edit_delete(event, "❂ :**عذرا لا يمكنني حظر نفسي.... ")
-    if user.id == 6218149232: 
+   if user.id in chv_dev:
         return await edit_delete(event, "❂ :**ما تستحي تحاول تحظر امبـراطور السورس**.... ")
-    if user.id == 6126535154 or user.id == 5809896714:
+   if user.id in amb_dev:
         return await edit_delete(event, "❂ :**ما أقدر على حظر مطور بالسورس**.... ") 
-    codevent = await edit_or_reply(event, "❂ :**جاري تشغيل عملية الحظر**  ..... ")
+ codevent = await edit_or_reply(event, "❂ :**جاري تشغيل عملية الحظر**  ..... ")
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS))
     except BadRequestError:
@@ -294,8 +294,8 @@ async def _ban_person(event):
 
 
 @codex.cod_cmd(
-    pattern="{LOPTYU}(?:\s|$)([\s\S]*)",
-    command=("الغاء الحظر", plugin_category),
+    pattern="الغاء حظر(?:\s|$)([\s\S]*)",
+    command=("الغاء حظر", plugin_category),
     info={
         "header": "Will unban the guy in the group where you used this command.",
         "description": "Removes the user account from the banned list of the group\
@@ -342,8 +342,8 @@ async def watcher(event):
 
 
 @codex.cod_cmd(
-    pattern="mute(?:\s|$)([\s\S]*)",
-    command=("mute", plugin_category),
+    pattern="كتم(?:\s|$)([\s\S]*)",
+    command=("كتم", plugin_category),
     info={
         "header": "To stop sending messages from that user",
         "description": "If is is not admin then changes his permission in group,\
@@ -447,8 +447,8 @@ async def startmute(event):
 
 
 @codex.cod_cmd(
-    pattern="unmute(?:\s|$)([\s\S]*)",
-    command=("unmute", plugin_category),
+    pattern="الغاء طتم(?:\s|$)([\s\S]*)",
+    command=("الغاء كتم", plugin_category),
     info={
         "header": "To allow user to send messages again",
         "description": "Will change user permissions ingroup to send messages again.\
@@ -519,8 +519,8 @@ async def endmute(event):
 
 
 @codex.cod_cmd(
-    pattern="kick(?:\s|$)([\s\S]*)",
-    command=("kick", plugin_category),
+    pattern="طرد(?:\s|$)([\s\S]*)",
+    command=("طرد", plugin_category),
     info={
         "header": "To kick a person from the group",
         "description": "Will kick the user from the group so he can join back.\
@@ -559,8 +559,8 @@ async def endmute(event):
 
 
 @codex.cod_cmd(
-    pattern="pin( loud|$)",
-    command=("pin", plugin_category),
+    pattern="ثبت( loud|$)",
+    command=("ثبت", plugin_category),
     info={
         "header": "For pining messages in chat",
         "description": "reply to a message to pin it in that in chat\
@@ -597,8 +597,8 @@ async def pin(event):
 
 
 @codex.cod_cmd(
-    pattern="unpin( all|$)",
-    command=("unpin", plugin_category),
+    pattern="الغاء ثبت( all|$)",
+    command=("الغاء ثبت", plugin_category),
     info={
         "header": "For unpining messages in chat",
         "description": "reply to a message to unpin it in that in chat\
@@ -644,8 +644,8 @@ async def pin(event):
 
 
 @codex.cod_cmd(
-    pattern="undlt( -u)?(?: |$)(\d*)?",
-    command=("undlt", plugin_category),
+    pattern="الاحداث( -u)?(?: |$)(\d*)?",
+    command=("الاحداث", plugin_category),
     info={
         "header": "To get recent deleted messages in group",
         "description": "To check recent deleted messages in group, by default will show 5. you can get 1 to 15 messages.",
