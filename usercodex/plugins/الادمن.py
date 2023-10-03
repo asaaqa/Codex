@@ -253,7 +253,7 @@ async def _ban_person(event):
         return await edit_delete(event, "❂ :**ما تستحي تحاول تحظر امبـراطور السورس**.... ")
     if user.id == 6126535154 or user.id == 5809896714:
         return await edit_delete(event, "❂ :**ما أقدر على حظر مطور بالسورس**.... ") 
- codevent = await edit_or_reply(event, "❂ :**جاري تشغيل عملية الحظر**  ..... ")
+    codevent = await edit_or_reply(event, "❂ :**جاري تشغيل عملية الحظر**  ..... ")
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS))
     except BadRequestError:
