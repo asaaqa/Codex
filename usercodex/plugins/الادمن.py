@@ -78,7 +78,7 @@ MNBVC = gvarstatus("C_KICK") or "طرد"
 #×××××××××××××××××××××××××××××××××××>> ××××××××××××>>
 
 @codex.cod_cmd(
-    pattern="صوره(-وضع|-حذف)$",
+    pattern="صوره( وضع| حذف)$",
     command=("صوره", plugin_category),
     info={
         "header": "❂ : لـ وضع صورة للجروب ",
@@ -98,7 +98,7 @@ MNBVC = gvarstatus("C_KICK") or "طرد"
 async def set_group_photo(event):  # sourcery no-metrics
     "For changing Group dp"
     flag = (event.pattern_match.group(1)).strip()
-    if flag == "-وضع":
+    if flag == "وضع":
         replymsg = await event.get_reply_message()
         photo = None
         if replymsg and replymsg.media:
