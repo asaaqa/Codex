@@ -1,4 +1,4 @@
-{"name": "سورس تليثون العرب سكالينجو","description": "تنصيب سورس مجانا على منصة سكالينجو","addons": ["scalingo-postgresql"],"keywords": ["userbot","scalingo","Codex"],"repository": "https://github.com/asaaqa/Codex","stack": "container",
+{"name": "سورس تليثون العرب سكالينجو","description": "تنصيب سورس مجانا على منصة سكالينجو","addons": ["scalingo-postgresql"],"keywords": ["usercodex","scalingo","Codex"],"repository": "https://github.com/asaaqa/Codex","stack": "container",
     "env": {
         "ALIVE_NAME": {"description": "ضع هنا اسم حسابك على التليجرام","required": true,"value":""},
         "APP_ID": {"description": "ضع هنا الايبي ايدي","required": true,"value":""},
