@@ -1,15 +1,9 @@
-# Using python slim-buster
-FROM asaaqa/codex:buster
+FROM asaaqa/codex:slim-buster
 
-# Install pytgcalls
-RUN pip3 install --no-cache-dir pytgcalls[telethon]
+RUN git clone https://github.com/asaaqa/codex.git /root/usercodex
 
-# Git clone repository + root 
-RUN git clone https://github.com/asaaqa/Codex.git /root/usercodex
-#working directory 
 WORKDIR /root/usercodex
 
-# Install requirements
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 ENV PATH="/home/usercodex/bin:$PATH"
